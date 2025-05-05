@@ -9,16 +9,16 @@ class Usuario(AbstractUser):
     telefone = models.CharField(max_length=22)
 
 class Disciplinar(models.Model):
-    nome = models.CharField()
-    curso = models.CharField()
+    nome = models.CharField(max_length=255)
+    curso = models.CharField(max_length=255)
     descricao = models.TextField()
-    professor = models.ForeignKey(Usuario, on_delete=models.SET_NULL, null=True, blank=True, null=True, limit_choices_to={'tipo': 'P'})
+    professor = models.ForeignKey(Usuario, on_delete=models.SET_NULL, blank=True, null=True, limit_choices_to={'tipo': 'P'})
 
     def __str__(self):
         return f'{self.nome} {self.get_tipo_display()}'
     
 
-class Sala(model.Model):
+class Sala(models.Model):
     nome = models.CharField(max_length=100)
     capacidade_alunos = models.IntegerField()
 

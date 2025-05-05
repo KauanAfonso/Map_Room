@@ -1,20 +1,24 @@
 from django.shortcuts import render
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView, ListAPIView
-from models import Usuario, Disciplinar, Reserva_ambiente
-from .serializers import UsuariosSerializer, DisciplinaSerializer, ReservaAmbienteSerializer
-from .permissions import IsGestor, isProfessor, isDonoOuGestor
+from .models import Usuario, Disciplinar, Reserva_ambiente
+from .serializers import UsuariosSerializer, DisciplinaSerializer, ReservaAmbienteSerializer,LoginSerializer
+from .permissions import isGestor, isProfessor, isDonoOuGestor
 from rest_framework.permissions import IsAuthenticated
+from rest_framework_simplejwt.views import TokenObtainPairView
+
+
+
 
 #CRUD PARA O USUARIO -> GESTOR
 class Gestor_Create_USER(ListCreateAPIView):
     queryset = Usuario.objects.all()
     serializer_class = UsuariosSerializer
-    permission_classes = [IsGestor]
+    permission_classes = [isGestor]
 
-class Gestor_Crud(RetrieveUpdateDestroyAPIView):
+class Gestor_Crud_User(RetrieveUpdateDestroyAPIView):
     queryset = Usuario.objects.all()
     serializer_class = UsuariosSerializer
-    permission_classes = [IsGestor]
+    permission_classes = [isGestor]
     lookup_field = 'pk' #pegando o id
 
 
@@ -22,17 +26,17 @@ class Gestor_Crud(RetrieveUpdateDestroyAPIView):
 class Gestor_Disciplinas(ListCreateAPIView):
     queryset = Disciplinar.objects.all()
     serializer_class = DisciplinaSerializer
-    permission_classes = [IsGestor]
+    permission_classes = [isGestor]
 
     def get_permissions(self): #se o metodo for get qualquer um poderá visualizar
         if self.request.method == 'GET':
             return [IsAuthenticated()]
-        return [IsGestor()] #somente gestores podem criar 
+        return [isGestor()] #somente gestores podem criar 
 
-class Gestor_Disciplinas(RetrieveUpdateDestroyAPIView):
+class Gestor_Crud_Disciplinas(RetrieveUpdateDestroyAPIView):
     queryset = Disciplinar.objects.all()
     serializer_class = DisciplinaSerializer
-    permission_classes = [IsGestor]
+    permission_classes = [isGestor]
 
 
 #Professor ver suas disciplinas
@@ -53,7 +57,7 @@ class ReservaAmbienteProfessorLitsCreate(ListCreateAPIView):
     def get_permissions(self):
         if self.request.method == "GET":
             return [IsAuthenticated()]
-        return [IsGestor]
+        return [isGestor]
     
     '''
     
@@ -72,6 +76,7 @@ class ReserveAmbienteRetriveUpdateDestroy(RetrieveUpdateDestroyAPIView):
     queryset = Reserva_ambiente.objects.all()
     serializer_class = ReservaAmbienteSerializer
     permission_classes = [isDonoOuGestor]
+    lookup_field = 'pk'
 
 
 # Professor 
@@ -82,3 +87,7 @@ class ReservaAmbiente_visualizar_professor(ListAPIView):
 
     def get_queryset(self):
         return Reserva_ambiente.objects.filter(professor=self.request.user)
+
+
+class login(TokenObtainPairView):
+    serializer_class = LoginSerializer

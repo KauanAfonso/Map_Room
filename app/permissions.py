@@ -1,4 +1,4 @@
-from rest_framework.permissions import BasePermission, has_object_permission
+from rest_framework.permissions import BasePermission
 from .models import Usuario
 
 

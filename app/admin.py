@@ -7,45 +7,29 @@ from django.contrib.auth.admin import UserAdmin
 
 class UsuarioModelAdmin(UserAdmin):
     # -------------Informações que aparecerá no painel admin
-    fieldsets = UserAdmin.fields + (
-        (None,{'fields': ('username', 'ni', 'first_name', 'tipo' ),}),
+    # Apenas os campos adicionais personalizados
+    fieldsets = UserAdmin.fieldsets + (
+        (None, {'fields': ('ni', 'tipo')}),
     )
-    # -------------Informações que aparecerá na criação do objeto no admin
+
     add_fieldsets = UserAdmin.add_fieldsets + (
-        (None,{'fields': ('username','ni', 'first_name', 'tipo' ),}),
+        (None, {'fields': ('ni', 'tipo')}),
     )
 
 
-class DisciplinaAdmin(UserAdmin):
+class DisciplinaAdmin(admin.ModelAdmin):
 
-    fieldsets = UserAdmin.fields + (
-        (None,{'fields': ('nome', 'curso', 'descricao', 'professor'),}),
-    )
-    add_fieldsets = UserAdmin.add_fieldsets + (
-        (None,{'fields': ('nome', 'curso', 'descricao', 'professor'),}),
-    )
+    fields = ('nome', 'curso', 'descricao', 'professor')
 
+class ReservaAmbienteAdmin(admin.ModelAdmin):
 
-class ReservaAmbienteAdmin(UserAdmin):
+    fields = ('sala_reservada', 'data_inicio', 'data_termino', 'periodo', 'professor')
 
-    fieldsets = UserAdmin.fields + (
-        (None,{'fields': ('sala_reservada', 'data_inicio', 'data_termino', 'periodo', 'professor'),}),
-    )
-    add_fieldsets = UserAdmin.add_fieldsets + (
-        (None,{'fields': ('nome', 'curso', 'descricao', 'professor'),}),
-    )
+class SalaAdmin(admin.ModelAdmin):
 
+    fields = ('nome', 'capacidade_alunos')
+    
 
-class SalaAdmin(UserAdmin):
-
-    fieldsets = UserAdmin.fields + (
-        (None,{'fields': ('nome', 'capacidade_alunos'),}),
-    )
-    add_fieldsets = UserAdmin.add_fieldsets + (
-        (None,{'fields': ('nome', 'capacidade_alunos'),}),
-    )
-
-
-
-
-admin.site.register(Usuario, UsuarioModelAdmin , Disciplinar, DisciplinaAdmin, Reserva_ambiente, ReservaAmbienteAdmin)
+admin.site.register(Usuario, UsuarioModelAdmin )
+admin.site.register(Disciplinar, DisciplinaAdmin)
+admin.site.register(Reserva_ambiente, ReservaAmbienteAdmin)
