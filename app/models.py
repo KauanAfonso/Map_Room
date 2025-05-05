@@ -2,11 +2,11 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 
 class Usuario(AbstractUser):
-    ni = models.BigIntegerField(unique=True)
+    ni = models.BigIntegerField(unique=True, blank=True, null=True)
     tipo = models.CharField(max_length=1, choices=(("G","Gestor"), ("P", "Professor")))
-    data_nascimento = models.DateField()
-    data_contratacao = models.DateField()
-    telefone = models.CharField(max_length=22)
+    data_nascimento = models.DateField(blank=True, null=True)
+    data_contratacao = models.DateField(blank=True, null=True)
+    telefone = models.CharField(max_length=22, blank=True, null=True)
 
 class Disciplinar(models.Model):
     nome = models.CharField(max_length=255)

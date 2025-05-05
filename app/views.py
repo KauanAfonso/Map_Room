@@ -40,7 +40,7 @@ class Gestor_Crud_Disciplinas(RetrieveUpdateDestroyAPIView):
 
 
 #Professor ver suas disciplinas
-class Professores_ListarProfessores(ListAPIView):
+class Professores_Listar_disciplinas(ListAPIView):
 
     serializer_class = DisciplinaSerializer
     permission_classes = [isProfessor]

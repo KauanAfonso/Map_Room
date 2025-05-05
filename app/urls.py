@@ -1,6 +1,6 @@
 
 from django.urls import path
-from .views import login , Gestor_Create_USER, Gestor_Crud_User, ReservaAmbienteProfessorLitsCreate, ReserveAmbienteRetriveUpdateDestroy, ReservaAmbiente_visualizar_professor, Gestor_Disciplinas,Gestor_Disciplinas,Gestor_Crud_Disciplinas
+from .views import login , Gestor_Create_USER, Gestor_Crud_User, ReservaAmbienteProfessorLitsCreate, ReserveAmbienteRetriveUpdateDestroy, ReservaAmbiente_visualizar_professor, Gestor_Disciplinas,Gestor_Disciplinas,Gestor_Crud_Disciplinas, Professores_Listar_disciplinas
 
 urlpatterns = [
     #login
@@ -18,4 +18,5 @@ urlpatterns = [
     #Diciplinas
     path('disciplinas/', Gestor_Disciplinas.as_view()),
     path('disciplinas/<int:pk>', Gestor_Crud_Disciplinas.as_view()),
+    path('professor/disciplinas/', Professores_Listar_disciplinas.as_view()),
 ]
