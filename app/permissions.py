@@ -5,11 +5,11 @@ from .models import Usuario
 #permissão que verifica se o user é gestor e se esta logado
 class isGestor(BasePermission):
     def has_permission(self, request, view):
-        return request.tipo == "G" and request.user.is_authenticated
+        return request.user.is_authenticated and request.user.tipo == "G" 
        
 class isProfessor(BasePermission):
     def has_permission(self, request, view):
-        return request.user.is_autenticated and request.user.tipo == "P"
+        return request.user.is_authenticated and request.user.tipo == "P"
     
 class isDonoOuGestor(BasePermission):
     #permissao quando consulta um objeto em especifico

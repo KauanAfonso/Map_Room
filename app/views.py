@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView, ListAPIView
-from .models import Usuario, Disciplinar, Reserva_ambiente
-from .serializers import UsuariosSerializer, DisciplinaSerializer, ReservaAmbienteSerializer,LoginSerializer
+from .models import Usuario, Disciplinar, Reserva_ambiente, Sala
+from .serializers import UsuariosSerializer, DisciplinaSerializer, ReservaAmbienteSerializer,LoginSerializer, SalasSerializer
 from .permissions import isGestor, isProfessor, isDonoOuGestor
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.views import TokenObtainPairView
@@ -20,6 +20,23 @@ class Gestor_Crud_User(RetrieveUpdateDestroyAPIView):
     serializer_class = UsuariosSerializer
     permission_classes = [isGestor]
     lookup_field = 'pk' #pegando o id
+
+
+class Gestor_Create_Sala(ListCreateAPIView):
+    queryset = Sala.objects.all()
+    serializer_class = SalasSerializer
+    permission_classes = [isGestor]
+
+    def get_permissions(self):
+        if self.request.method == "GET":
+            return [IsAuthenticated()]
+        return [isGestor()]
+
+class RetriveUpdateDestroySala(RetrieveUpdateDestroyAPIView):
+    queryset = Sala.objects.all()
+    serializer_class = SalasSerializer
+    permission_classes = [isGestor]
+    Lookup_field = 'pk'
 
 
 #CRUD PARA DISCIPLINAS -> GESTOR
@@ -57,7 +74,7 @@ class ReservaAmbienteProfessorLitsCreate(ListCreateAPIView):
     def get_permissions(self):
         if self.request.method == "GET":
             return [IsAuthenticated()]
-        return [isGestor]
+        return [isGestor()]
     
     '''
     
@@ -65,12 +82,13 @@ class ReservaAmbienteProfessorLitsCreate(ListCreateAPIView):
     
     '''
     def get_queryset(self):
-        queryset = super().get_queryset(self)
+        queryset = super().get_queryset()
         profesor_id = self.request.query_params.get('professor', None)
         if profesor_id:
             queryset = queryset.filter(profesor_id=profesor_id)
         return queryset
-            
+    
+
 
 class ReserveAmbienteRetriveUpdateDestroy(RetrieveUpdateDestroyAPIView):
     queryset = Reserva_ambiente.objects.all()
@@ -83,7 +101,7 @@ class ReserveAmbienteRetriveUpdateDestroy(RetrieveUpdateDestroyAPIView):
 class ReservaAmbiente_visualizar_professor(ListAPIView):
 
     serializer_class = ReservaAmbienteSerializer
-    permission_classes = isProfessor
+    permission_classes = [isProfessor]
 
     def get_queryset(self):
         return Reserva_ambiente.objects.filter(professor=self.request.user)

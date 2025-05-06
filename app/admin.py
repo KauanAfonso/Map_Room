@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Usuario, Disciplinar, Reserva_ambiente
+from .models import Usuario, Disciplinar, Reserva_ambiente, Sala
 from django.contrib.auth.admin import UserAdmin
 
 
@@ -23,7 +23,7 @@ class DisciplinaAdmin(admin.ModelAdmin):
 
 class ReservaAmbienteAdmin(admin.ModelAdmin):
 
-    fields = ('sala_reservada', 'data_inicio', 'data_termino', 'periodo', 'professor')
+    fields = ('sala_reservada', 'data', 'periodo', 'professor')
 
 class SalaAdmin(admin.ModelAdmin):
 
@@ -33,3 +33,4 @@ class SalaAdmin(admin.ModelAdmin):
 admin.site.register(Usuario, UsuarioModelAdmin )
 admin.site.register(Disciplinar, DisciplinaAdmin)
 admin.site.register(Reserva_ambiente, ReservaAmbienteAdmin)
+admin.site.register(Sala)
