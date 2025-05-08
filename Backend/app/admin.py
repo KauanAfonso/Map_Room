@@ -6,31 +6,20 @@ from django.contrib.auth.admin import UserAdmin
 
 
 class UsuarioModelAdmin(UserAdmin):
-    # -------------Informações que aparecerá no painel admin
-    # Apenas os campos adicionais personalizados
+
+    # Compos que aparecerá do usuario no admin
     fieldsets = UserAdmin.fieldsets + (
         (None, {'fields': ('ni', 'tipo')}),
     )
 
+
+    #informações que aparecerá no meu criar user pelo admin
     add_fieldsets = UserAdmin.add_fieldsets + (
         (None, {'fields': ('ni', 'tipo')}),
     )
-
-
-class DisciplinaAdmin(admin.ModelAdmin):
-
-    fields = ('nome', 'curso', 'descricao', 'professor')
-
-class ReservaAmbienteAdmin(admin.ModelAdmin):
-
-    fields = ('sala_reservada', 'data', 'periodo', 'professor')
-
-class SalaAdmin(admin.ModelAdmin):
-
-    fields = ('nome', 'capacidade_alunos')
-    
+  
 
 admin.site.register(Usuario, UsuarioModelAdmin )
-admin.site.register(Disciplinar, DisciplinaAdmin)
-admin.site.register(Reserva_ambiente, ReservaAmbienteAdmin)
+admin.site.register(Disciplinar)
+admin.site.register(Reserva_ambiente)
 admin.site.register(Sala)

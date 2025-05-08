@@ -6,7 +6,8 @@ from .models import Usuario
 class isGestor(BasePermission):
     def has_permission(self, request, view):
         return request.user.is_authenticated and request.user.tipo == "G" 
-       
+
+#permissao que verifica se o user é o professor    
 class isProfessor(BasePermission):
     def has_permission(self, request, view):
         return request.user.is_authenticated and request.user.tipo == "P"
@@ -17,4 +18,4 @@ class isDonoOuGestor(BasePermission):
     def has_object_permission(self, request, view, obj):
         if request.user.tipo == 'G':
             return True
-        return obj.professor == request.user
+        return obj.professor == request.user #retorne o id do logado no momento(professor)
