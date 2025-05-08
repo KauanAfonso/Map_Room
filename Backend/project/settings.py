@@ -93,16 +93,25 @@ WSGI_APPLICATION = 'project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'formativa',
+#         'USER': 'root',
+#         'PASSWORD': 'senai',
+#         'HOST':'localhost',
+#         "PORT": '3306'
+#     }
+# }
+
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'formativa',
-        'USER': 'root',
-        'PASSWORD': 'senai',
-        'HOST':'localhost',
-        "PORT": '3306'
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
 
 
 AUTH_USER_MODEL = 'app.Usuario'
