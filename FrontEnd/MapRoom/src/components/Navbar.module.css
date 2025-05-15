@@ -1,0 +1,13 @@
+.container{
+    display: flex;
+    background-color: orange;
+}
+
+ul{
+    list-style: none;
+    margin-right: 20px;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+}
+
