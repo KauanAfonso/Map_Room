@@ -1,10 +1,14 @@
-import { RoutesComp } from "./RoutesComp";
-
+import { RoutesComp } from "./Routes/RoutesComp";
+import { BrowserRouter } from "react-router-dom";
 
 function App() {
 
   return (
-    <RoutesComp/>
+    <>
+      <BrowserRouter>
+        <RoutesComp />
+      </BrowserRouter>
+    </>
   )
 
 }

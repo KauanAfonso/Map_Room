@@ -1,8 +1,7 @@
-import { Navbar } from "../components/Navbar";
-
+import { Menu } from "../components/Menu"
 
 export function Home(){
     return (
-        <Navbar/>
+          <Menu/>
     )
 }

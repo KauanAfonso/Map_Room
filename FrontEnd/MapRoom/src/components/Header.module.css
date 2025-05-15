@@ -1,4 +1,29 @@
 
 header{
-    background-color: blueviolet;
+    background-color: #B6174B;
+}
+
+
+header h1{
+    text-align: center;
+    font-size: 5em;
+    color: #362D30;
+}
+
+.container {
+    display: flex;
+    padding: 2rem;
+    color: #FFFFFC;
+}
+
+ul {
+    list-style: none;
+    margin-right: 20px;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    display: flex;
+    justify-content: space-around;
+    gap: 2rem;
+
 }
