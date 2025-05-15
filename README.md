@@ -1,2 +1,2 @@
-# Teacher_Mnagement
+# Teacher_Managment
 Formativa at senai
