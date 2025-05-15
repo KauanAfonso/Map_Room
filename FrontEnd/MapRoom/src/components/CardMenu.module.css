@@ -1,12 +1,20 @@
 .card{
-    background-color: #B6174B;
+    border: #2f197d1d solid 1px;
+    border-radius: 1rem;
     padding: 4rem;
-    height: 400px;
+    height: 200px;
     color: rgba(255, 255, 255, 0.8);
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 1rem;
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
+}
+
+.div_inside:hover{
+    transition: 0.2s ease;
+    color: rgb(40, 153, 179);
 }
 
 .div_inside {
@@ -16,8 +24,30 @@
 
 .div_inside {
     font-size: 8em;
-    color:#362D30;
+    color:#00BFB3;
 }
+
+.div_inside :global(svg) {
+    transition: transform 0.3s ease;
+  }
+  
+.card:nth-child(1):hover :global(svg) {
+    transform: rotate(-10deg);
+  }
+
+
+.card:nth-child(2):hover :global(svg) {
+    transform: rotate(10deg);
+  }
+
+.card:nth-child(3):hover :global(svg) {
+    transform: rotate(-5deg);
+  }
+
+.card:nth-child(4):hover :global(svg) {
+    transform: rotate(10deg);
+  }
+
 
 span {
     font-size: .2em;

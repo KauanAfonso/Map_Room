@@ -10,5 +10,6 @@ export function Menu() {
             <CardMenu icon={FaChalkboardTeacher} label="Professores" />
             <CardMenu icon={FaUserTie} label="Gestores" />
         </div>
+        
     );
 }

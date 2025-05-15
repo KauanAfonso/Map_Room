@@ -1,0 +1,89 @@
+/* Estilos para o footer */
+.footer {
+    background-color: #282c34;
+    color: #fff;
+    padding: 40px 0;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    width: 100%; /* Garante que ocupe 100% da largura */
+    box-sizing: border-box; /* Garante que o padding e a borda não estouram a largura */
+    margin: 0; /* Remove qualquer margem extra */
+  }
+  
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    width: 100%; /* Garante que o container ocupe 100% da largura */
+  }
+  
+  .info {
+    flex: 1;
+    margin-right: 40px;
+  }
+  
+  .brand {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .description {
+    font-size: 16px;
+    color: #aaa;
+  }
+  
+  .links {
+    flex: 1;
+  }
+  
+  .links ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .links li {
+    margin: 10px 0;
+  }
+  
+  .link {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s ease;
+  }
+  
+  .link:hover {
+    color: #00bcd4;
+  }
+  
+  .socialMedia {
+    flex: 1;
+  }
+  
+  .icon {
+    color: #fff;
+    margin: 0 10px;
+    font-size: 18px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .icon:hover {
+    color: #00bcd4;
+  }
+  
+  .footerBottom {
+    margin-top: 40px;
+    font-size: 14px;
+    color: #aaa;
+    padding: 0 20px; /* Garante que o padding no footer bottom esteja correto */
+  }
+  
+  .footerBottom p {
+    margin: 0;
+  }
+  

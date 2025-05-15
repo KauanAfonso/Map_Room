@@ -1,6 +1,6 @@
 
 header{
-    background-color: #B6174B;
+    background-color: #00BFB3;
 }
 
 
@@ -14,6 +14,7 @@ header h1{
     display: flex;
     padding: 2rem;
     color: #FFFFFC;
+    justify-content: space-around;
 }
 
 ul {
@@ -23,7 +24,6 @@ ul {
     display: flex;
     flex-direction: row;
     display: flex;
-    justify-content: space-around;
     gap: 2rem;
 
 }
