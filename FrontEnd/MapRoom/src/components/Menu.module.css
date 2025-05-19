@@ -1,9 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&family=Poetsen+One&display=swap');
+
 .container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
     gap: 15px;
-    margin-top: 2rem;
-    padding: 8rem;
+    padding: 3rem 8rem 8rem 8rem;
+    
 }
 
-
+.nome{
+    margin-top: 2rem;
+    padding: 0 8rem;
+    font-family: "Poetsen One", sans-serif;
+    font-weight: 200;
+    font-style: normal;
+    color: #00BFB3;
+    font-size: 2em;
+}

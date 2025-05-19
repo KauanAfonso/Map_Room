@@ -1,8 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p&family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&family=Poetsen+One&display=swap');
+
 .card{
     border: #2f197d1d solid 1px;
     border-radius: 1rem;
-    padding: 4rem;
-    height: 200px;
+    padding: 2rem;
+    height: 300px;
     color: rgba(255, 255, 255, 0.8);
     display: flex;
     align-items: center;
@@ -51,4 +53,7 @@
 
 span {
     font-size: .2em;
+    font-family: "M PLUS 1p", sans-serif;
+    font-weight: 400;
+    font-style: normal;
 }
