@@ -56,13 +56,15 @@ class ReservaAmbienteSerializer(serializers.ModelSerializer):
         periodo = data.get('periodo')
         professor = data.get('professor')
 
+
         if sala and data_reserva and periodo:
+            #buscando se já existe uma reserva feita para essa mesma sala, no mesmo dia e no mesmo período.
             conflito = Reserva_ambiente.objects.filter(
                 sala_reservada=sala,
                 data=data_reserva,
                 periodo=periodo
             )
-
+            #verifica se o professor já tem uma outra reserva feita nesse mesmo dia e período,
             conflito2 = Reserva_ambiente.objects.filter(
                 data=data_reserva,
                 periodo=periodo,
@@ -81,7 +83,7 @@ class ReservaAmbienteSerializer(serializers.ModelSerializer):
                 raise serializers.ValidationError("Essa sala já está reservada nesse dia e nesse mesmo período!")
             
             if conflito2.exists():
-                raise serializers.ValidationError("Essa professor ja agendou uma sala nesse periodo e dia!")
+                raise serializers.ValidationError("Esse professor ja agendou uma sala nesse periodo e dia!")
             
 
         return data

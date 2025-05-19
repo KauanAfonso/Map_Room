@@ -125,7 +125,7 @@ class Gestor_Crud_Disciplinas(RetrieveUpdateDestroyAPIView):
         serialiizer = self.get_serializer(instance, data=request.data)
         serialiizer.is_valid(raise_exception = True)
         self.perform_update(serialiizer)
-        return Response({"Mensagem":"Disciplina atulizada com sucesso!"}, status=status.HTTP_204_NO_CONTENT) #mensagem
+        return Response({"Mensagem":"Disciplina atualizada com sucesso!"}, status=status.HTTP_200_OK) #mensagem
     
     def get(self, request, *args, **kwargs):
         try:
@@ -133,6 +133,8 @@ class Gestor_Crud_Disciplinas(RetrieveUpdateDestroyAPIView):
         except Http404:
             return Response({"Mensagem":"Disciplina não encontrada!"}, status=status.HTTP_404_NOT_FOUND) #mensagem
         
+        serializer = self.get_serializer(instance)
+        return Response(serializer.data)
         
     def destroy(self, request, *args, **kwargs):
         try:
@@ -221,6 +223,9 @@ class ReserveAmbienteRetriveUpdateDestroy(RetrieveUpdateDestroyAPIView):
             instance = self.get_object()
         except Http404:
             return Response({"Mensagem":"Ambiente não encontrado!"}, status=status.HTTP_404_NOT_FOUND) #mensagem
+        
+        serializer = self.get_serializer(instance)
+        return Response(serializer.data)
         
         
     def destroy(self, request, *args, **kwargs):
