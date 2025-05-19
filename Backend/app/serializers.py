@@ -3,6 +3,7 @@ from .models import Usuario, Disciplinar, Reserva_ambiente, Sala
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 
+#view de salas
 class SalasSerializer(serializers.ModelSerializer):
     class Meta:
         model = Sala
@@ -12,28 +13,36 @@ class UsuariosSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Usuario
-        fields = ['id','username', 'email','telefone','tipo','ni','data_nascimento','data_contratacao']
+        fields = ['id','username', "password", 'email','telefone','tipo','ni','data_nascimento','data_contratacao']
+
+        extra_kwargs = {
+            'password': {'write_only': True}  # Evita mostrar a senha nas respostas
+        }
 
     def update(self, instance, validated_data):
-        password = validated_data.get("password", instance.password)
-            
+        password = validated_data.pop('password', None)  # Remove para não aplicar duas vezes
+
+        # Atualiza os demais campos
+        for attr, value in validated_data.items():
+            setattr(instance, attr, value)
+
+        # Atualiza a senha, se fornecida
         if password:
-            instance.set_password(password)  # Aplica o hash
+            instance.set_password(password)  # Aplica hash corretamente
 
         instance.save()
         return instance
 
 
+#view de disciplinas
 class DisciplinaSerializer(serializers.ModelSerializer):
     professor_name = serializers.CharField(source='professor.username', read_only=True)
     class Meta:
         model = Disciplinar
         fields = ['nome', 'curso' , 'descricao', 'professor' , 'professor_name']
 
-
 class ReservaAmbienteSerializer(serializers.ModelSerializer):
-    # professor_detalhes = UsuariosSerializer(source='professor.email', read_only=True) #pegar todos os dados do professor 
-    professor_name = serializers.CharField(source='professor.username', read_only=True) #pegar um campo espeficifo
+    professor_name = serializers.CharField(source='professor.username', read_only=True) #pegar um campo espeficifo, para o nome do professor e somente para get
 
     class Meta:
         model = Reserva_ambiente
@@ -65,6 +74,9 @@ class ReservaAmbienteSerializer(serializers.ModelSerializer):
                 conflito = conflito.exclude(pk=self.instance.pk)
                 conflito2 = conflito2.exclude(pk=self.instance.pk)
 
+            '''
+            Se um dos dois conflitos existir retornar erros
+            '''
             if conflito.exists():
                 raise serializers.ValidationError("Essa sala já está reservada nesse dia e nesse mesmo período!")
             
@@ -74,14 +86,18 @@ class ReservaAmbienteSerializer(serializers.ModelSerializer):
 
         return data
 
+#serializer de login: herda TokenObtainPairSerializer para obeter fresh e o refresh
 class LoginSerializer(TokenObtainPairSerializer):
+
+    #pega os campos campos enviados
     username = serializers.CharField()
-    password = serializers.CharField(write_only = True)
+    password = serializers.CharField(write_only = True) #somente na escrita
 
-
+    #validando os dados
     def validate(self, attrs):
         data = super().validate(attrs)
 
+        #Obtendo mais dados do user
         data['user'] ={
             'username': self.user.username,
             'email':self.user.email,

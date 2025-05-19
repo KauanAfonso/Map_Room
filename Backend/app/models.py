@@ -2,7 +2,6 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.core.exceptions import ValidationError
 
-
 '''
 
 Class de usuário:
@@ -15,8 +14,6 @@ class Usuario(AbstractUser):
     data_nascimento = models.DateField(blank=True, null=True)
     data_contratacao = models.DateField(blank=True, null=True)
     telefone = models.CharField(max_length=22, blank=True, null=True)
-
-
 
 '''
 
@@ -33,7 +30,6 @@ class Disciplinar(models.Model):
     def __str__(self):
         return f'{self.nome}'
 
-
 '''
 
 Class de Sala:
@@ -46,8 +42,6 @@ class Sala(models.Model):
 
     def __str__(self):
         return str(self.nome)
-    
-
     
 '''
 

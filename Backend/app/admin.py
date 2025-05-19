@@ -2,9 +2,6 @@ from django.contrib import admin
 from .models import Usuario, Disciplinar, Reserva_ambiente, Sala
 from django.contrib.auth.admin import UserAdmin
 
-
-
-
 class UsuarioModelAdmin(UserAdmin):
 
     # Compos que aparecerá do usuario no admin
