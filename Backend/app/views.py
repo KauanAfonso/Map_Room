@@ -5,9 +5,9 @@ from .serializers import UsuariosSerializer, DisciplinaSerializer, ReservaAmbien
 from .permissions import isGestor, isProfessor, isDonoOuGestor
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.views import TokenObtainPairView
-
-
-
+from rest_framework import status
+from rest_framework.response import Response
+from django.http import Http404
 
 #CRUD PARA O USUARIO -> GESTOR
 class Gestor_Create_USER(ListCreateAPIView):
@@ -15,12 +15,36 @@ class Gestor_Create_USER(ListCreateAPIView):
     serializer_class = UsuariosSerializer
     permission_classes = [isGestor]
 
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data) #obtem o serializer do request
+        serializer.is_valid(raise_exception = True) #verifica se o serializer é valido
+        self.perform_create(serializer)#salva no banco
+        return Response({"Mensagem":"Usuário criado com sucesso !", "usuario":serializer.data}, status=status.HTTP_201_CREATED) #mensagem
+      
 class Gestor_Crud_User(RetrieveUpdateDestroyAPIView):
     queryset = Usuario.objects.all()
     serializer_class = UsuariosSerializer
     permission_classes = [isGestor]
     lookup_field = 'pk' #pegando o id
 
+    def update(self, request, *args, **kwargs):
+        try:
+            istance = self.get_object()
+        except Http404:
+                return Response({"Mensagem":"Usuário não encontrado !"}, status=status.HTTP_404_NOT_FOUND) #mensagem
+        serializer = self.get_serializer(istance, data=request.data)
+        serializer.is_valid(raise_exception = True)
+        self.perform_update(serializer)#salva no banco
+        return Response({"Mensagem":"Usuário atualizado com sucesso !", "usuario":serializer.data}, status=status.HTTP_200_OK) #mensagem
+    
+    def destroy(self, request, *args, **kwargs):
+        try:
+            instance = self.get_object()
+        except Http404:
+            return Response({"Mensagem":"Usuário não encontrado !"}, status=status.HTTP_404_NOT_FOUND) #mensagem
+        self.perform_destroy(instance)#salva no banco
+        return Response({"Mensagem":"Usuário deletado com sucesso !"}, status=status.HTTP_204_NO_CONTENT) #mensagem
+    
 
 class Gestor_Create_Sala(ListCreateAPIView):
     queryset = Sala.objects.all()
@@ -49,11 +73,44 @@ class Gestor_Disciplinas(ListCreateAPIView):
         if self.request.method == 'GET':
             return [IsAuthenticated()]
         return [isGestor()] #somente gestores podem criar 
-
+    
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception = True)
+        self.perform_create(serializer)
+        return Response({"Mensagem":"Disciplina criada com sucesso !", "discplina":serializer.data}, status=status.HTTP_201_CREATED) #mensagem
+    
 class Gestor_Crud_Disciplinas(RetrieveUpdateDestroyAPIView):
     queryset = Disciplinar.objects.all()
     serializer_class = DisciplinaSerializer
     permission_classes = [isGestor]
+
+    def update(self, request, *args, **kwargs):
+        try:
+            instance = self.get_object()
+        except Http404:
+            return Response({"Mensagem":"Disciplina não encontrada!"}, status=status.HTTP_404_NOT_FOUND) #mensagem
+        serialiizer = self.get_serializer(instance, data=request.data)
+        serialiizer.is_valid(raise_exception = True)
+        self.perform_update(serialiizer)
+        return Response({"Mensagem":"Disciplina atulizada com sucesso!"}, status=status.HTTP_204_NO_CONTENT) #mensagem
+    
+    def get(self, request, *args, **kwargs):
+        try:
+            instance = self.get_object()
+        except Http404:
+            return Response({"Mensagem":"Disciplina não encontrada!"}, status=status.HTTP_404_NOT_FOUND) #mensagem
+        
+        
+    def destroy(self, request, *args, **kwargs):
+        try:
+            instance = self.get_object()
+        except Http404:
+            return Response({"Mensagem":"Disciplina não encontrada!"}, status=status.HTTP_404_NOT_FOUND) #mensagem
+        self.perform_destroy(instance)#salva no banco
+        return Response({"Mensagem":"Disciplina deletada com sucesso!"}, status=status.HTTP_200_OK) #mensagem
+
+
 
 
 #Professor ver suas disciplinas
@@ -88,6 +145,11 @@ class ReservaAmbienteProfessorLitsCreate(ListCreateAPIView):
             queryset = queryset.filter(profesor_id=profesor_id)
         return queryset
     
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data) #obtem o serializer do request
+        serializer.is_valid(raise_exception = True) #verifica se o serializer é valido
+        self.perform_create(serializer)#salva no banco
+        return Response({"Mensagem":"Ambiente reservado com sucesso !", "ambiente":serializer.data}, status=status.HTTP_201_CREATED) #mensagem
 
 
 class ReserveAmbienteRetriveUpdateDestroy(RetrieveUpdateDestroyAPIView):
@@ -95,6 +157,31 @@ class ReserveAmbienteRetriveUpdateDestroy(RetrieveUpdateDestroyAPIView):
     serializer_class = ReservaAmbienteSerializer
     permission_classes = [isDonoOuGestor]
     lookup_field = 'pk'
+
+    def update(self, request, *args, **kwargs):
+        try:
+            instance = self.get_object()
+        except Http404:
+            return Response({"Mensagem":"Ambiente não encontrada!"}, status=status.HTTP_404_NOT_FOUND) #mensagem
+        serialiizer = self.get_serializer(instance, data=request.data)
+        serialiizer.is_valid(raise_exception = True)
+        self.perform_update(serialiizer)
+        return Response({"Mensagem":"Ambiente atulizado com sucesso!"}, status=status.HTTP_200_OK) #mensagem
+    
+    def get(self, request, *args, **kwargs):
+        try:
+            instance = self.get_object()
+        except Http404:
+            return Response({"Mensagem":"Ambiente não encontrado!"}, status=status.HTTP_404_NOT_FOUND) #mensagem
+        
+        
+    def destroy(self, request, *args, **kwargs):
+        try:
+            instance = self.get_object()
+        except Http404:
+            return Response({"Mensagem":"Ambiente não encontrado!"}, status=status.HTTP_404_NOT_FOUND) #mensagem
+        self.perform_destroy(instance)#salva no banco
+        return Response({"Mensagem":"Ambiente deletado com sucesso!"}, status=status.HTTP_200_OK) #mensagem
 
 
 # Professor 
@@ -105,7 +192,7 @@ class ReservaAmbiente_visualizar_professor(ListAPIView):
 
     def get_queryset(self):
         return Reserva_ambiente.objects.filter(professor=self.request.user)
-
+    
 
 class login(TokenObtainPairView):
     serializer_class = LoginSerializer
