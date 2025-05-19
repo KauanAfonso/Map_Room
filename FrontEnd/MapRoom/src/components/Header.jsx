@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 export function Header() {
     return (
         <header>
-          
             <nav className={styles.container}>
                 <ul>
                     <li><Link to="/">MapRoom</Link></li>

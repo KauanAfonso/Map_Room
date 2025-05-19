@@ -1,0 +1,33 @@
+
+.content {
+    display: flex;
+    align-items: center;  /* Centraliza verticalmente */
+    justify-content: center;  /* Centraliza horizontalmente */
+    height: 100vh;  /* Garante que o contêiner ocupe 100% da altura da tela */
+    background-color: #dadadad9;
+
+  }
+  
+.container{
+    display: flex;
+    /* max-width: 1100; */
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+    
+}
+
+.div_form{
+    max-height: 700px;
+    background-color: rgb(255, 255, 255);
+    padding: 2rem;
+   
+}
+
+.div_img img{
+    max-height: 700px;
+
+}
+
+.div_img img{
+    width: 100%;
+    height: 100% !important;
+}
