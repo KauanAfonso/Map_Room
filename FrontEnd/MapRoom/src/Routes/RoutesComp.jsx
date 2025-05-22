@@ -5,6 +5,7 @@ import { Home } from "../Paginas/Home";
 import { Layout } from "../Paginas/Layout";
 
 export function RoutesComp() {
+    
     return (
         <Routes>
             <Route path="/" element={<Layout />}>

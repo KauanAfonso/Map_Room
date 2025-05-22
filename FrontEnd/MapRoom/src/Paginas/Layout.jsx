@@ -4,15 +4,15 @@ import { Footer } from "../components/Footer";
 
 export function Layout() {
 
-    const location = useLocation()
-    const login_page = location.pathname != "/login"
+    // const location = useLocation()
+    // const login_page = location.pathname != "/login" //precisa ser verdadeiro , ou seja não ser a pagina de login
 
 
     return (
         <>
-        {login_page &&  <Header/>}
+        <Header/>
         <Outlet/>
-        {login_page &&  <Footer/>}
+        <Footer/>
         </>
     )
 

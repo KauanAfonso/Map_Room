@@ -50,6 +50,10 @@
     transform: rotate(10deg);
   }
 
+.card:nth-child(5):hover :global(svg) {
+      transform: rotate(-10deg);
+    }
+
 
 span {
     font-size: .2em;
