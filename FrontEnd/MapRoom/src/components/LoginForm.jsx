@@ -9,7 +9,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 
 
 export function LoginForm() {
-    
+
     const schemaLogin = z.object({
         username: z.string()
             .min(1, "informe seu usuário")
@@ -38,9 +38,9 @@ export function LoginForm() {
                 password: data.password
             });
 
-            const { acess, refresh, user } = response.data;
+            const { access, refresh, user } = response.data;
 
-            localStorage.setItem('acess_token', acess)
+            localStorage.setItem('acess_token', access)
             localStorage.setItem('refresh_token', refresh)
             localStorage.setItem('tipo', user.tipo)
             localStorage.setItem('username', user.username)
@@ -53,27 +53,27 @@ export function LoginForm() {
         }
     }
 
-return(
-    <form onSubmit={handleSubmit(getDados)}>
-        <div className={estilos.boas_vindas}>
-            <h2>Seja Bem Vindo!</h2>
-            <p>Acesse com sua conta</p>
-        </div>
-        <div className={estilos.div_content}>
-            <label>Username: </label>
-            <input type="text" {...register('username')} placeholder="kauanafonso14" />
-        </div>
-        {errors.username && <p style={{ color: 'red' }}>{ errors.username.message }</p>}
+    return (
+        <form onSubmit={handleSubmit(getDados)}>
+            <div className={estilos.boas_vindas}>
+                <h2>Seja Bem Vindo!</h2>
+                <p>Acesse com sua conta</p>
+            </div>
+            <div className={estilos.div_content}>
+                <label>Username: </label>
+                <input type="text" {...register('username')} placeholder="kauanafonso14" />
+            </div>
+            {errors.username && <p style={{ color: 'red' }}>{errors.username.message}</p>}
 
-        <div className={estilos.div_content}>
-            <label>Senha: </label>
-            <input type="password" {...register('password')} placeholder="password" />
-            {errors.password && <p style={{ color: 'red' }}>{errors.password.message}</p>}
-        </div>
-        <button type="submit">Enviar</button>
-        {/* {error && <div style={{ color: 'red' }}>{error}</div>} Exibe a mensagem de erro */}
+            <div className={estilos.div_content}>
+                <label>Senha: </label>
+                <input type="password" {...register('password')} placeholder="password" />
+                {errors.password && <p style={{ color: 'red' }}>{errors.password.message}</p>}
+            </div>
+            <button type="submit">Enviar</button>
+            {/* {error && <div style={{ color: 'red' }}>{error}</div>} Exibe a mensagem de erro */}
 
-    </form>
-)
+        </form>
+    )
 
 }

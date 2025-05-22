@@ -6,11 +6,11 @@ export function Header() {
         <header>
             <nav className={styles.container}>
                 <ul>
-                    <li><Link to="/">MapRoom</Link></li>
+                    <li><Link to="/home">MapRoom</Link></li>
                     <li>Meus Agendamentos</li>
                     <li>Agendar Sala</li>
                     <li>Visualizar salas agendadas</li>
-                    <li><Link to="/login">Login</Link></li>
+                    <li><Link to="/">Login</Link></li>
                 </ul>
             </nav>
         </header>
