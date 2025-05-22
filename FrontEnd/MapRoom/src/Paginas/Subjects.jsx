@@ -29,16 +29,25 @@ export function Subjects() {
     return (
         <div>
             <h1>Disciplinas:</h1>
-            {subjects.map((sub, index) => {
-                return(
-                    
-                    <ul>
-                        <li key={index}> Nome: {sub.nome}</li><br />
-                        <li>Curso: {sub.curso}</li><br />
-                        <li>Professor resonsável: {sub.professor_name}</li>
-                </ul>
-                )
-            })}
+            <table border="1" cellPadding="8" cellSpacing="0">
+                <thead>
+                    <tr>
+                    <th>Nome</th>
+                    <th>Curso</th>
+                    <th>Professor Responsável</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {subjects.map((sub, index) => (
+                    <tr key={index}>
+                        <td>{sub.nome}</td>
+                        <td>{sub.curso}</td>
+                        <td>{sub.professor_name}</td>
+                    </tr>
+                    ))}
+                </tbody>
+        </table>
+
         </div>
     )
 }
