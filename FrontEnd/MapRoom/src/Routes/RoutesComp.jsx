@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import { Login } from '../Paginas/Login';
 import { Home } from "../Paginas/Home";
 import { Layout } from "../Paginas/Layout";
+import {Envirouments} from "../Paginas/Envirouments"
 import { Subjects } from "../Paginas/Subjects";
 export function RoutesComp() {
     
@@ -12,6 +13,7 @@ export function RoutesComp() {
                 <Route index element={<Login />} />
                 <Route path="/home" element={<Home />} />
                 <Route path='/disciplinas' element={<Subjects/>} />
+                <Route path='/Reservas' element={<Envirouments/>} />
             </Route>
         </Routes>
     );

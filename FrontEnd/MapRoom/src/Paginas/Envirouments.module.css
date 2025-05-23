@@ -1,0 +1,28 @@
+.container {
+    min-height: 100vh;
+    max-width: 1250px;
+    margin: 0 auto;
+    overflow: hidden; /* Utilizado par os cards não sairem do contianer */
+    padding: 1rem;
+    margin-top: 5rem;
+}
+
+
+.container_cards{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+    padding-top: 2rem;
+}
+
+.filtro{
+    display: flex;
+    justify-content: space-between;
+}
+
+.filtro h1{
+    font-family: "Poetsen One", sans-serif;
+    font-weight: 200;
+    color:  #00bfb3;
+
+}

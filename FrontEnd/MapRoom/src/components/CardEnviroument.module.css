@@ -1,0 +1,35 @@
+.card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(1, 93, 105, 0.15);
+    padding: 2rem;
+    max-width: 700px;
+    width: 300px;
+    margin: 1.5rem auto;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: default;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 30px rgba(1, 93, 105, 0.25);
+}
+
+.title {
+    font-size: 1.75rem;
+    margin-bottom: 0.75rem;
+    color: #00BFB3;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.card p {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: #444;
+}
+
+.card p strong {
+    color: #00807c;
+}

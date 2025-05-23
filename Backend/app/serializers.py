@@ -7,7 +7,7 @@ from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 class SalasSerializer(serializers.ModelSerializer):
     class Meta:
         model = Sala
-        fields = '__all__'
+        fields = ['nome', 'capacidade_alunos']
 
 class UsuariosSerializer(serializers.ModelSerializer):
 
@@ -43,10 +43,10 @@ class DisciplinaSerializer(serializers.ModelSerializer):
 
 class ReservaAmbienteSerializer(serializers.ModelSerializer):
     professor_name = serializers.CharField(source='professor.username', read_only=True) #pegar um campo espeficifo, para o nome do professor e somente para get
-
+    sala_nome = serializers.CharField(source='sala_reservada.nome', read_only=True)
     class Meta:
         model = Reserva_ambiente
-        fields = ['data','professor', 'periodo', 'professor_name', 'sala_reservada']
+        fields = ['data','professor', 'periodo', 'professor_name', 'sala_nome', 'sala_reservada']
      
 
     def validate(self, data):

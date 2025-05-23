@@ -5,13 +5,14 @@
     border-radius: 1rem;
     padding: 2rem;
     height: 300px;
+    max-width: 400px;
     color: rgba(255, 255, 255, 0.8);
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 1rem;
     cursor: pointer;
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
+    box-shadow: rgba(1, 93, 105, 0.137) 0px 25px 50px -12px;
 }
 
 .div_inside:hover{
