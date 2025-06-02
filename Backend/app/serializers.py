@@ -44,9 +44,10 @@ class DisciplinaSerializer(serializers.ModelSerializer):
 class ReservaAmbienteSerializer(serializers.ModelSerializer):
     professor_name = serializers.CharField(source='professor.username', read_only=True) #pegar um campo espeficifo, para o nome do professor e somente para get
     sala_nome = serializers.CharField(source='sala_reservada.nome', read_only=True)
+    id = serializers.CharField(source='pk', read_only=True) #preciso passar a pk para fazer operações no front
     class Meta:
         model = Reserva_ambiente
-        fields = ['data','professor', 'periodo', 'professor_name', 'sala_nome', 'sala_reservada']
+        fields = ['id', 'data','professor', 'periodo', 'professor_name', 'sala_nome', 'sala_reservada']
      
 
     def validate(self, data):

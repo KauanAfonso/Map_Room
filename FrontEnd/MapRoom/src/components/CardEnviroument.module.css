@@ -33,3 +33,9 @@
 .card p strong {
     color: #00807c;
 }
+
+.acoes{
+    display: flex;
+    flex-direction: row;
+}
+
