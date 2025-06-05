@@ -25,6 +25,7 @@ class Disciplinar(models.Model):
     nome = models.CharField(max_length=255)
     curso = models.CharField(max_length=255)
     descricao = models.TextField()
+    carga_horaria = models.IntegerField(blank=True, null=True, default=100)
     professor = models.ForeignKey(Usuario, related_name='usuario', on_delete=models.SET_NULL, blank=True, null=True, limit_choices_to={'tipo': 'P'})
 
     def __str__(self):
