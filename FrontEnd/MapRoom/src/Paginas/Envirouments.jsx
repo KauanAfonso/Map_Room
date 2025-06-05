@@ -1,25 +1,27 @@
 import { useState, useEffect } from "react";
 import axios from "axios"
 import { CardEnviroument } from "../components/CardEnviroument";
-import { data } from "react-router-dom";
 import styles from "./Envirouments.module.css";
 import { ToggleSwitch } from "../components/ToggleSwitch";
+
 
 export function Envirouments(){
 
     const [enviroument, setEnviroument] = useState([]);
-    const [filtrar_en, setFiltrar_env] = useState('api/reservas/')
+    const [api, setApi] = useState('api/reservas/')
     const token = localStorage.getItem('acess_token');
     const [mostrar_acoes, set_acoes] = useState(false);
     const is_gestor = localStorage.getItem('tipo') == "G";
     console.log(is_gestor)
 
+
     function handleToggle(isOn) {
         if (isOn) {
-          setFiltrar_env('api/professor/reservas/');
+          setApi('api/professor/reservas/');
           set_acoes(true)
         } else {
-          setFiltrar_env('api/reservas/');
+            set_acoes(false)
+            setApi('api/reservas/');
         }
         console.log("Toggle está", isOn ? "Ligado" : "Desligado");
       }
@@ -30,12 +32,12 @@ export function Envirouments(){
 
     
     useEffect(()=>{
-     async function getEnvirouments(filtrar_en) {
+     async function getEnvirouments(api) {
         try{
-            const response = await axios.get(`http://127.0.0.1:8000/${filtrar_en}`,{
+            const response = await axios.get(`http://127.0.0.1:8000/${api}`,{
                 headers:{
                         'Authorization': `Bearer ${token}`, // <- Envia o token corretamente
-                        'Content-Type': 'application/json'
+                    'Content-Type': 'application/json'
                 }
             })
             console.log(response.data)
@@ -44,8 +46,8 @@ export function Envirouments(){
             console.log("Erro" + err)
         }
     }
-    getEnvirouments(filtrar_en);   
-    }, [filtrar_en])  
+    getEnvirouments(api);   
+    }, [api])  
 
 
     return (
@@ -64,3 +66,4 @@ export function Envirouments(){
     );
     
 }
+

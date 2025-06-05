@@ -1,14 +1,22 @@
 import styles from "./CardEnviroument.module.css";
 import dayjs from 'dayjs';
 import Button from "./Button";
-import { use, useEffect } from "react";
+import { useState } from 'react';
 import axios from "axios";
+import { Teacher_update } from '../components/modais/Teacher_update';
 
-export function CardEnviroument({ professor, sala, periodo, data, acoes, id}) {
+export function CardEnviroument({ professor, sala, periodo, data, acoes, id }) {
+    
 
-    function handle_id(id){
-        alert(id);
-    };
+
+    const [selected_element, set_selected_element] = useState(null);
+    const [showModal, setShowModal] = useState(false);
+
+    //MODAL
+    function handle_modal(id) {
+        setShowModal(true)
+        set_selected_element(id)
+    }
 
     const token = localStorage.getItem('acess_token');
 
@@ -47,9 +55,18 @@ export function CardEnviroument({ professor, sala, periodo, data, acoes, id}) {
             <p>Período: {periodo === "M" ? " Manhã" : periodo === "T" ? " Tarde" : " Noite"}</p>
             {acoes && (
                 <div className="acoes">
-                <Button color="# #00807c" text="Editar" function_action={() =>handle_id(id)} />
+                <Button color="# #00807c" text="Editar" function_action={() =>handle_modal(id)} />
                 <Button color="#E0031A" text="Excluir" function_action={() =>delete_card(id)} />
                 </div>
+            )}
+            
+            {showModal && (
+                <Teacher_update
+                    id_enviroument={selected_element} // o ID da reserva
+                    token={token}
+                    element={true} // só para ativar o modal, pode ser true/false
+                    onClose={() => setShowModal(false)}
+                />
             )}
             
         </div>
