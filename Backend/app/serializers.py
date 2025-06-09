@@ -37,9 +37,10 @@ class UsuariosSerializer(serializers.ModelSerializer):
 #view de disciplinas
 class DisciplinaSerializer(serializers.ModelSerializer):
     professor_name = serializers.CharField(source='professor.username', read_only=True)
+    id = serializers.CharField(source='pk', read_only=True) #preciso passar a pk para fazer operações no front
     class Meta:
         model = Disciplinar
-        fields = ['nome', 'curso' , 'descricao', 'professor' , 'professor_name']
+        fields = ['id' , 'nome', 'curso' , "carga_horaria",  'descricao', 'professor' , 'professor_name']
 
 class ReservaAmbienteSerializer(serializers.ModelSerializer):
     professor_name = serializers.CharField(source='professor.username', read_only=True) #pegar um campo espeficifo, para o nome do professor e somente para get

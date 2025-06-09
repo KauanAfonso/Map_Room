@@ -1,19 +1,17 @@
 import { useState, useEffect } from "react";
 import axios from "axios"
-import { CardEnviroument } from "../components/CardEnviroument";
-import styles from "./Envirouments.module.css";
-import { ToggleSwitch } from "../components/ToggleSwitch";
+import { CardEnviroument } from "../../components/CardEnviroument";
+import styles from "./Teacher_Enviroument.module.css";
+import { ToggleSwitch } from "../../components/ToggleSwitch";
 
 
-export function Envirouments(){
+export function Teacher_Envirouments(){
 
     const [enviroument, setEnviroument] = useState([]);
     const [api, setApi] = useState('api/reservas/')
     const token = localStorage.getItem('acess_token');
     const [mostrar_acoes, set_acoes] = useState(false);
-    const is_gestor = localStorage.getItem('tipo') == "G";
-    console.log(is_gestor)
-
+    
 
     function handleToggle(isOn) {
         if (isOn) {
@@ -25,12 +23,7 @@ export function Envirouments(){
         }
         console.log("Toggle está", isOn ? "Ligado" : "Desligado");
       }
-
-    useEffect(() => {
-        (is_gestor)?set_acoes(true): set_acoes(false);
-        }, [is_gestor]); // executa quando is_gestor mudar
-
-    
+  
     useEffect(()=>{
      async function getEnvirouments(api) {
         try{
@@ -46,15 +39,15 @@ export function Envirouments(){
             console.log("Erro" + err)
         }
     }
-    getEnvirouments(api);   
-    }, [api])  
+    getEnvirouments(api);
+    }, [api])
 
 
     return (
         <div className={styles.container}>
             <div className={styles.filtro}>
                 <h1>Agendamentos</h1>
-                {!is_gestor && (<ToggleSwitch label="Meus agendamentos" onToggle={handleToggle} />)}
+                <ToggleSwitch label={"Meus agendamentos"}  onToggle={handleToggle}/>
             </div>
 
             <div className={styles.container_cards}>
