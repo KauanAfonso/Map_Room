@@ -9,10 +9,138 @@ a {
   color: inherit;
 }
 
-
 .container {
-  min-height: 100vh;
   max-width: 1100px;
+  padding: 5rem;
   margin: 0 auto;
   overflow: hidden; /* Utilizado par os cards não sairem do contianer */
+}
+
+input,
+textarea,
+select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 16px;
+  border-radius: 6px;
+  border: 1px solid #00BFB3;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.error {
+  color: #d32f2f;
+  margin-top: -12px;
+  margin-bottom: 16px;
+  font-size: 13px;
+}
+
+
+button{
+    padding: .6rem 3.5rem;
+    background-color: #00BFB3;
+    color: rgb(255, 255, 255);
+    border: 1px solid rgb(214, 211, 211);
+}
+
+/* Tabela */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Cabeçalho */
+thead {
+  background-color: #00BFB3;
+  color: #fff;
+  text-align: left;
+}
+
+thead th {
+  padding: 12px 16px;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+/* Linhas da tabela */
+tbody tr {
+  border-bottom: 1px solid #ddd;
+  transition: background-color 0.2s ease;
+}
+
+tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Células */
+tbody td, tbody th {
+  padding: 12px 16px;
+  vertical-align: middle;
+}
+
+/* Ação: botões editar e excluir */
+tbody td:last-child {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Ícones: pointer e cores */
+tbody td:last-child a svg,
+tbody td:last-child svg {
+  cursor: pointer;
+  color: #00BFB3;
+  transition: color 0.3s ease;
+}
+
+tbody td:last-child a:hover svg {
+  color: #0056b3;
+}
+
+tbody td:last-child svg:hover {
+  color: #d9534f;
+}
+
+/* Responsividade para telas pequenas */
+@media (max-width: 720px) {
+  main {
+    padding: 0 8px;
+  }
+
+  table, thead, tbody, th, td, tr {
+    display: block;
+  }
+
+  thead tr {
+    display: none;
+  }
+
+  tbody tr {
+    margin-bottom: 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 12px;
+  }
+
+  tbody td {
+    padding-left: 50%;
+    position: relative;
+  }
+
+  tbody td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 16px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  tbody td:last-child {
+    display: flex;
+    justify-content: flex-start;
+    gap: 16px;
+  }
 }

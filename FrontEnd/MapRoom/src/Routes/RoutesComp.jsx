@@ -7,8 +7,10 @@ import { Layout } from "../Paginas/Layout";
 import { Teacher_subjects } from "../Paginas/Teachers/Teacher_subjects";
 import { Teacher_Envirouments } from "../Paginas/Teachers/Teacher_Envirouments";
 
+
 import { Subjects_Manager} from "../Paginas/manager/Subjects_Manager";
 import { Subject_Edit } from "../Paginas/manager/Subject_Edit";
+import { Subject_Register } from "../Paginas/manager/Subject_Register";
 
 export function RoutesComp() {
     
@@ -21,6 +23,8 @@ export function RoutesComp() {
                 <Route path='/Reservas' element={<Teacher_Envirouments/>} />
                 <Route path='/gestor/disciplinas' element={<Subjects_Manager/>}/>
                 <Route path='/gestor/disciplinas/editar/:id' element={<Subject_Edit/>}/>
+                <Route path='/gestor/disciplinas/criar/' element={<Subject_Register/>}/>
+
             </Route>
         </Routes>
     );

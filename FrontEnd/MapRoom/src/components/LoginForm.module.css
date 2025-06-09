@@ -10,13 +10,6 @@ form{
     margin-bottom: 2rem;
 }
 
-input{
-    padding: .3rem 3.5rem;
-    background-color: #ffffff;
-    color: rgb(92, 117, 241);
-     border: 1px solid rgb(214, 211, 211);
-    
-}
 
 label{
     background-color: rgb(255, 255, 255);
@@ -29,9 +22,3 @@ label{
   
 }
 
-button{
-    padding: .6rem 3.5rem;
-    background-color: #00BFB3;
-    color: rgb(255, 255, 255);
-    border: 1px solid rgb(214, 211, 211);
-}

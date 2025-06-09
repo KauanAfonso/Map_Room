@@ -14,7 +14,7 @@ const username = localStorage.getItem("username");
 
     return (
         <div className={styles.container}>
-            <h1 className={styles.nome}>Olá {username}</h1>
+            <h1 className={styles.nome}>Olá {username}</h1><br />
             <div className={styles.containerCard}>
                 <Link to={linkDisciplinas}>
                     <CardMenu icon={FaBookOpen} label="Disciplinas" />
@@ -30,7 +30,7 @@ const username = localStorage.getItem("username");
                         <Link to="/professores">
                             <CardMenu icon={FaChalkboardTeacher} label="Professores" />
                         </Link>
-                        <Link to="/gestores">
+                        <Link to="http://127.0.0.1:8000/admin/">
                             <CardMenu icon={FaUserTie} label="Gestores" />
                         </Link>
                     </>

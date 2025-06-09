@@ -3,8 +3,6 @@ import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import estilos from './Subject_Edit.module.css';
 
  
 const schemaDisciplina = z.object({
@@ -27,12 +25,9 @@ const schemaDisciplina = z.object({
                             }).min(1, 'Selecione um professor')
 });
  
-export function Subject_Edit() {
+export function Subject_Register() {
  
     const [professores, setProfessores] = useState([]);
-    const { id } = useParams();
-    const navigate = useNavigate();
- 
     const {
         register,
         handleSubmit,
@@ -52,16 +47,6 @@ export function Subject_Edit() {
                     }
                 });
                 setProfessores(response.data);
-                console.log(response.data)
-                
-                //Preenche o formulários com os dados do registro do ID
-                 const resDisciplina = await axios.get(`http://127.0.0.1:8000/api/disciplinas/${id}`, {
-                    headers: { Authorization: `Bearer ${token}` }
-                });
- 
-                // Preenche o formulário
-                reset(resDisciplina.data);
- 
             } catch (error) {
                 console.error("Erro ao carregar professores", error);
             }
@@ -74,8 +59,8 @@ export function Subject_Edit() {
         try {
             const token = localStorage.getItem('acess_token');
  
-            const response = await axios.put(
-                `http://127.0.0.1:8000/api/disciplinas/${id}`,
+            const response = await axios.post(
+                'http://127.0.0.1:8000/api/disciplinas/',
                 data,
                 {
                     headers: {
@@ -88,7 +73,6 @@ export function Subject_Edit() {
             console.log('Disciplina cadastrado com sucesso!', response.data);
             alert('Disciplina cadastrado com sucesso!');
             reset();
-            navigate('/home');
  
         } catch (error) {
             console.error('Erro ao cadastrar disciplina', error);
@@ -98,64 +82,48 @@ export function Subject_Edit() {
  
     return (
         <div className='container'>
-           
             <form onSubmit={handleSubmit(obterDadosFormulario)}>
-                    <h2>Editar de Disciplina</h2>
-                    <label>Nome da Disciplina</label>
-                    <input
-                        
-                        {...register('nome')}
-                        placeholder="Materia"
-                    />
-                    {errors.nome && <p className={estilos.error}>{errors.nome.message}</p>}
-               
- 
-                    <label >Nome do curso</label>
-                    <input
-                        
-                        {...register('curso')}
-                        placeholder="Desenvolvimento de Sistema"
-                    />
-                    {errors.curso && <p className={estilos.error}>{errors.curso.message}</p>}
-               
- 
-                    <label >Carga horária</label>
-                    <input
-                     type="number"
-   
-                        {...register('cargaHoraria', { valueAsNumber: true })}
-                        placeholder="100"
-                    />
-                    {errors.cargaHoraria &&
-                    <p>
-                        {errors.cargaHoraria.message}
-                    </p>}
-               
- 
+                <h2>Cadastro de Disciplina</h2>
+
+                <label>Nome da Disciplina</label>
+                <input {...register('nome')} placeholder="Materia" />
+                {errors.nome && <p className='error'>{errors.nome.message}</p>}
+
+                <label>Nome do curso</label>
+                <input {...register('curso')} placeholder="Desenvolvimento de Sistema" />
+                {errors.curso && <p className='error'>{errors.curso.message}</p>}
+
+                <label>Carga horária</label>
+                <input
+                    type="number"
+                    {...register('carga_horaria', { valueAsNumber: true })}
+                    placeholder="75"
+                />
+                {errors.carga_horaria && <p className='error'>{errors.carga_horaria.message}</p>}
+
                 <label>Descrição</label>
                 <textarea
                     {...register('descricao')}
                     placeholder="Descreva o curso com até 2000 caracteres"
                     rows={5}
-                    />
-                    {errors.descricao && <p>{errors.descricao.message}</p>}
-               
-                    <label >Professor</label>
-                    <select
-                    {...register('professor', { valueAsNumber: true })}>
-                        <option  value="">Selecione um professor</option>
-                        {professores.map((prof) => (
-                            <option key={prof.id} value={prof.id}>
-                                {prof.username}
-                            </option>
-                        ))}
-                    </select>
-                    {errors.professor && <p className={estilos.error}>{errors.professor.message}</p>}
+                />
+                {errors.descricao && <p className='error'>{errors.descricao.message}</p>}
+
+                <label>Professor</label>
+                <select {...register('professor', { valueAsNumber: true })}>
+                    <option value="">Selecione um professor</option>
+                    {professores.map((prof) => (
+                        prof.tipo == "P" &&(
+                        <option key={prof.id} value={prof.id}>
+                            {prof.username}
+                        </option>
+                        )
+                    ))}
+                </select>
+                {errors.professor && <p className='error'>{errors.professor.message}</p>}
 
                 <div>
-                    <button className={estilos.submitButton} type="submit">
-                        Cadastrar
-                    </button>
+                    <button type="submit">Cadastrar</button>
                 </div>
             </form>
         </div>

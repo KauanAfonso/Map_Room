@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-
+import styles from "../Teachers/Teacher_Enviroument.module.css";
 // Importação dos ícones do React Icons
 import { FiPlus, FiEdit, FiTrash } from 'react-icons/fi';
 
@@ -31,9 +31,9 @@ export function Subjects_Manager() {
     const confirmar = window.confirm('Tem certeza que deseja excluir esta reserva?');
     if (!confirmar) return;
 
-    const token = localStorage.getItem('access_token');
+    const token = localStorage.getItem('acess_token');
 
-    axios.delete(`http://127.0.0.1:8000/api/disciplina/${id}/`, {
+    axios.delete(`http://127.0.0.1:8000/api/disciplinas/${id}`, {
       headers: {
         'Authorization': `Bearer ${token}`
       }
@@ -49,14 +49,14 @@ export function Subjects_Manager() {
   };
 
   return (
-    <main>
-      <h3>Disciplinas</h3>
-      <div>
-        <Link to="disCad">
+    <main className={styles.container}>
+      <div className={styles.filtro}>
+        <h1>Disciplinas</h1>
+        <Link to="/gestor/disciplinas/criar/">
           <FiPlus size={24} title="Adicionar" />
         </Link>
       </div>
-      <div>
+      <div style={{ marginTop: '1.5rem' }}>
         <table>
           <thead>
             <tr>
