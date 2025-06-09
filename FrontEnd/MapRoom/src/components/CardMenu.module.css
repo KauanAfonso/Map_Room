@@ -13,6 +13,7 @@
     gap: 1rem;
     cursor: pointer;
     box-shadow: rgba(1, 93, 105, 0.137) 0px 25px 50px -12px;
+    text-align: center;
 }
 
 .div_inside:hover{
@@ -20,14 +21,13 @@
     color: rgb(40, 153, 179);
 }
 
+
 .div_inside {
     display: flex;
     flex-direction: column;
-}
-
-.div_inside {
     font-size: 8em;
     color:#00BFB3;
+    align-items: center;
 }
 
 .div_inside :global(svg) {
