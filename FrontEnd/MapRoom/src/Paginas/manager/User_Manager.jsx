@@ -5,23 +5,23 @@ import styles from "../Teachers/Teacher_Enviroument.module.css";
 // Importação dos ícones do React Icons
 import { FiPlus, FiEdit, FiTrash } from 'react-icons/fi';
 
-export function Classroom_Manager() {
-  const [salas, setsalas] = useState([]);
+export function User_Manager() {
+  const [usuario, setUsuario] = useState([]);
 
   useEffect(() => {
     const token = localStorage.getItem('acess_token');
 
-    axios.get('http://127.0.0.1:8000/api/salas/', {
+    axios.get('http://127.0.0.1:8000/api/usuario/', {
       headers: {
         'Authorization': `Bearer ${token}`
       }
     })
     .then(response => {
-      setsalas(response.data);
+      setUsuario(response.data);
       console.log(response.data)
     })
     .catch(error => {
-      console.error("Erro ao buscar salas:", error);
+      console.error("Erro ao buscar usuario:", error);
     });
 
   }, []);
@@ -32,26 +32,26 @@ export function Classroom_Manager() {
 
     const token = localStorage.getItem('acess_token');
 
-    axios.delete(`http://127.0.0.1:8000/api/salas/${id}`, {
+    axios.delete(`http://127.0.0.1:8000/api/usuario/${id}`, {
       headers: {
         'Authorization': `Bearer ${token}`
       }
     })
     .then(() => {
-      alert('Disciplina excluída com sucesso!');
-      setsalas(prev => prev.filter(dis => dis.id !== id));
+      alert('usuário excluído com sucesso!');
+      setUsuario(prev => prev.filter(dis => dis.id !== id));
     })
     .catch(error => {
-      console.error('Erro ao excluir disciplina:', error);
-      alert('Erro ao excluir a disciplina.');
+      console.error('Erro ao excluir usuário:', error);
+      alert('Erro ao excluir a usuário.');
     });
   };
 
   return (
     <main className={styles.container}>
       <div className={styles.filtro}>
-        <h1>Salas disponíveis</h1>
-        <Link to="/gestor/salas/register/">
+        <h1>Usuarios disponíveis</h1>
+        <Link to="/gestor/usuario/register/">
           <FiPlus size={24} title="Adicionar" />
         </Link>
       </div>
@@ -59,24 +59,32 @@ export function Classroom_Manager() {
         <table>
           <thead>
             <tr>
-              <th>Nome</th>
-              <th>Capacidade de alunos</th>
+              <th>Id</th>
+              <th>Username</th>
+              <th>Ni</th>
+              <th>Email</th>
+              <th>Telefone</th>
+              <th>Tipo</th>
               <th>Ação</th>
             </tr>
           </thead>
           <tbody>
-            {salas.map(sala => (
-              <tr key={sala.id}>
-                <td>{sala.nome}</td>
-                <td>{sala.capacidade_alunos} alunos</td>
+            {usuario.map(user => (
+              <tr key={user.id}>
+                <td>{user.id}</td>
+                <td>{user.username}</td>
+                <td>{user.ni}</td>
+                <td>{user.email}</td>
+                <th>{user.telefone}</th>
+                <th>{user.tipo}</th>
               <td>
-                  <Link to={`/gestor/salas/editar/${sala.id}`}>
+                  <Link to={`/gestor/usuario/editar/${user.id}`}>
                     <FiEdit size={20} title="Editar" />
                   </Link>
                   <FiTrash
                     size={20}
                     title="Excluir"
-                    onClick={() => handleDelete(sala.id)}
+                    onClick={() => handleDelete(user.id)}
                     style={{ cursor: 'pointer', marginLeft: '8px' }}
                   />
                 </td>

@@ -5,9 +5,10 @@ from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 #view de salas
 class SalasSerializer(serializers.ModelSerializer):
+    id = serializers.CharField(source='pk', read_only=True) #preciso passar a pk para fazer operações no front
     class Meta:
         model = Sala
-        fields = ['nome', 'capacidade_alunos']
+        fields = ['id', 'nome', 'capacidade_alunos']
 
 class UsuariosSerializer(serializers.ModelSerializer):
 

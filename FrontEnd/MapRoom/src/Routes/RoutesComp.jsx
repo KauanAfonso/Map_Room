@@ -7,11 +7,18 @@ import { Layout } from "../Paginas/Layout";
 import { Teacher_subjects } from "../Paginas/Teachers/Teacher_subjects";
 import { Teacher_Envirouments } from "../Paginas/Teachers/Teacher_Envirouments";
 
+import { User_Edit } from "../Paginas/manager/User_Edit";
+import { User_Register } from "../Paginas/manager/User_Register";
+import { User_Manager } from "../Paginas/manager/User_Manager";
 
+import {Classroom_Register} from "../Paginas/manager/Classroom_Register";
 import {Classroom_Manager} from "../Paginas/manager/Classroom_Manager";
+import {Classroom_edit} from "../Paginas/manager/Classroom_edit";
+
 import { Subjects_Manager} from "../Paginas/manager/Subjects_Manager";
 import { Subject_Edit } from "../Paginas/manager/Subject_Edit";
 import { Subject_Register } from "../Paginas/manager/Subject_Register";
+
 
 export function RoutesComp() {
     
@@ -28,7 +35,12 @@ export function RoutesComp() {
                 <Route path='/gestor/disciplinas/criar/' element={<Subject_Register/>}/>
 
                 <Route path='/gestor/salas' element={<Classroom_Manager/>}/>
+                <Route path="/gestor/salas/editar/:id" element={<Classroom_edit/>}/>
+                <Route path="/gestor/salas/register/" element={<Classroom_Register/>}/>
 
+                <Route path='/gestor/usuarios' element={<User_Manager/>}/>
+                <Route path="/gestor/usuario/register/" element={<User_Register/>}/>
+                <Route path="/gestor/usuario/editar/:id" element={<User_Edit/>}/>
             </Route>
         </Routes>
     );
