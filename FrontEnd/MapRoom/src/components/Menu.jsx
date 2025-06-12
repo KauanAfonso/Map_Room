@@ -31,7 +31,7 @@ const username = localStorage.getItem("username");
                 {tipo === 'G' && (
                     <>
                         <Link to={link_usuarios}>
-                            <CardMenu icon={FaChalkboardTeacher} label="Professores" />
+                            <CardMenu icon={FaChalkboardTeacher} label="Usuários" />
                         </Link>
                         <Link to="http://127.0.0.1:8000/admin/">
                             <CardMenu icon={FaUserTie} label="Administrador" />

@@ -46,6 +46,9 @@ export function Subject_Edit() {
         async function buscarProfessores() {
             try {
                 const token = localStorage.getItem('acess_token');
+                if(!token){
+                        navigate('/')
+                  }
                 const response = await axios.get('http://127.0.0.1:8000/api/usuario/', {
                     headers: {
                         'Authorization': `Bearer ${token}`

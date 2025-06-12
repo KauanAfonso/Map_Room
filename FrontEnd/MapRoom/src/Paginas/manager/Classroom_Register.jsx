@@ -2,8 +2,7 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import axios from 'axios';
-import { useState, useEffect } from 'react';
-
+import { useNavigate } from 'react-router-dom';
  
 const schemasSala = z.object({
     nome: z.string()
@@ -27,13 +26,15 @@ export function Classroom_Register() {
         resolver: zodResolver(schemasSala)
     });
  
-
+    const token = localStorage.getItem('acess_token');
+    const navigate = useNavigate();
+    if(!token){
+            navigate('/')
+    }
  
     async function obterDadosFormulario(data) {
       console.log("Dados do formulário:", data);
         try {
-            const token = localStorage.getItem('acess_token');
- 
             const response = await axios.post(
                 'http://127.0.0.1:8000/api/salas/',
                 data,

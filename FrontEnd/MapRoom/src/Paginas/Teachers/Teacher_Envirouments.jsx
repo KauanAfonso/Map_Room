@@ -3,13 +3,20 @@ import axios from "axios"
 import { CardEnviroument } from "../../components/CardEnviroument";
 import styles from "./Teacher_Enviroument.module.css";
 import { ToggleSwitch } from "../../components/ToggleSwitch";
+import { useNavigate } from "react-router-dom";
 
 
 export function Teacher_Envirouments(){
+    
 
     const [enviroument, setEnviroument] = useState([]);
     const [api, setApi] = useState('api/reservas/')
     const token = localStorage.getItem('acess_token');
+    const navigate = useNavigate();
+    if(!token){
+        navigate('/')
+    }
+
     const [mostrar_acoes, set_acoes] = useState(false);
     
 

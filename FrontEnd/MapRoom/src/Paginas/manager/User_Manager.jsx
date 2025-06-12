@@ -4,13 +4,17 @@ import { Link } from 'react-router-dom';
 import styles from "../Teachers/Teacher_Enviroument.module.css";
 // Importação dos ícones do React Icons
 import { FiPlus, FiEdit, FiTrash } from 'react-icons/fi';
+import { useNavigate } from "react-router-dom";
 
 export function User_Manager() {
   const [usuario, setUsuario] = useState([]);
+  const token = localStorage.getItem('acess_token');
+  const navigate = useNavigate();
+  if(!token){
+      navigate('/')
+  }
 
   useEffect(() => {
-    const token = localStorage.getItem('acess_token');
-
     axios.get('http://127.0.0.1:8000/api/usuario/', {
       headers: {
         'Authorization': `Bearer ${token}`
@@ -29,9 +33,6 @@ export function User_Manager() {
   const handleDelete = (id) => {
     const confirmar = window.confirm('Tem certeza que deseja excluir esta reserva?');
     if (!confirmar) return;
-
-    const token = localStorage.getItem('acess_token');
-
     axios.delete(`http://127.0.0.1:8000/api/usuario/${id}`, {
       headers: {
         'Authorization': `Bearer ${token}`

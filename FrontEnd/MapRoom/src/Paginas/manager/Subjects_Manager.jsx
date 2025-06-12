@@ -1,16 +1,19 @@
 import axios from "axios";
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styles from "../Teachers/Teacher_Enviroument.module.css";
+
 // Importação dos ícones do React Icons
 import { FiPlus, FiEdit, FiTrash } from 'react-icons/fi';
 
 export function Subjects_Manager() {
   const [disciplinas, setDisciplinas] = useState([]);
-  const [professores, setProfessores] = useState({});
-
+  const token = localStorage.getItem('acess_token');
+  const navigate = useNavigate();
+  if(!token){
+      navigate('/')
+  }
   useEffect(() => {
-    const token = localStorage.getItem('acess_token');
 
     axios.get('http://127.0.0.1:8000/api/disciplinas/', {
       headers: {
@@ -52,7 +55,7 @@ export function Subjects_Manager() {
     <main className={styles.container}>
       <div className={styles.filtro}>
         <h1>Disciplinas</h1>
-        <Link to="/gestor/disciplinas/criar/">
+        <Link to="/gestor/disciplinas/register/">
           <FiPlus size={24} title="Adicionar" />
         </Link>
       </div>

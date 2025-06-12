@@ -1,15 +1,19 @@
 import axios from "axios";
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link , useNavigate } from 'react-router-dom';
 import styles from "../Teachers/Teacher_Enviroument.module.css";
 // Importação dos ícones do React Icons
 import { FiPlus, FiEdit, FiTrash } from 'react-icons/fi';
 
 export function Classroom_Manager() {
   const [salas, setsalas] = useState([]);
+  const token = localStorage.getItem('acess_token');
+  const navigate = useNavigate();
+  if(!token){
+        navigate('/')
+  }
 
   useEffect(() => {
-    const token = localStorage.getItem('acess_token');
 
     axios.get('http://127.0.0.1:8000/api/salas/', {
       headers: {

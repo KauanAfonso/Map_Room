@@ -50,6 +50,9 @@ export function User_Edit(){
         async function buscarusuario() {
             try {
                 const token = localStorage.getItem('acess_token');
+                if(!token){
+                    navigate('/')
+                }
                 const response = await axios.get(`http://127.0.0.1:8000/api/usuario/${id}`, {
                     headers: {
                         'Authorization': `Bearer ${token}`

@@ -3,6 +3,7 @@ import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
  
 const schemaDisciplina = z.object({
@@ -27,6 +28,7 @@ const schemaDisciplina = z.object({
  
 export function Subject_Register() {
  
+    const navigate = useNavigate();
     const [professores, setProfessores] = useState([]);
     const {
         register,
@@ -41,6 +43,9 @@ export function Subject_Register() {
         async function buscarProfessores() {
             try {
                 const token = localStorage.getItem('acess_token');
+                if(!token){
+                    navigate('/')
+                  }
                 const response = await axios.get('http://127.0.0.1:8000/api/usuario/', {
                     headers: {
                         'Authorization': `Bearer ${token}`
@@ -52,7 +57,7 @@ export function Subject_Register() {
             }
         }
         buscarProfessores();
-    }, []);
+    }, [navigate]);
  
     async function obterDadosFormulario(data) {
       console.log("Dados do formulário:", data);

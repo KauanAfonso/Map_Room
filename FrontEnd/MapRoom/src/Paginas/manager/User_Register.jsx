@@ -3,7 +3,7 @@ import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
-
+import { useNavigate } from 'react-router-dom';
  
 const schemasSala = z.object({
     username: z.string()
@@ -40,14 +40,17 @@ export function User_Register() {
     } = useForm({
         resolver: zodResolver(schemasSala)
     });
+     const token = localStorage.getItem('acess_token');
+     const navigate = useNavigate();
+     if(!token){
+       navigate('/')
+     }
  
 
  
     async function obterDadosFormulario(data) {
       console.log("Dados do formulário:", data);
         try {
-            const token = localStorage.getItem('acess_token');
- 
             const response = await axios.post(
                 'http://127.0.0.1:8000/api/usuario/',
                 data,

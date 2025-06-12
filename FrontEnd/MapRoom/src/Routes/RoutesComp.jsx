@@ -20,6 +20,9 @@ import { Subjects_Manager} from "../Paginas/manager/Subjects_Manager";
 import { Subject_Edit } from "../Paginas/manager/Subject_Edit";
 import { Subject_Register } from "../Paginas/manager/Subject_Register";
 
+import { Envirouments_Manager } from "../Paginas/manager/Envirouments_Manager";
+import { Envirouments_Edit } from "../Paginas/manager/Envirouments_Edit";
+import { Envirouments_Register } from "../Paginas/manager/Envirouments_Register";
 
 export function RoutesComp() {
     
@@ -34,7 +37,7 @@ export function RoutesComp() {
 
                 <Route path='/gestor/disciplinas' element={<Subjects_Manager/>}/>
                 <Route path='/gestor/disciplinas/editar/:id' element={<Subject_Edit/>}/>
-                <Route path='/gestor/disciplinas/criar/' element={<Subject_Register/>}/>
+                <Route path='/gestor/disciplinas/register/' element={<Subject_Register/>}/>
 
                 <Route path='/gestor/salas' element={<Classroom_Manager/>}/>
                 <Route path="/gestor/salas/editar/:id" element={<Classroom_edit/>}/>
@@ -43,6 +46,10 @@ export function RoutesComp() {
                 <Route path='/gestor/usuarios' element={<User_Manager/>}/>
                 <Route path="/gestor/usuario/register/" element={<User_Register/>}/>
                 <Route path="/gestor/usuario/editar/:id" element={<User_Edit/>}/>
+
+                <Route path="/gestor/reservas" element={<Envirouments_Manager/>}/>
+                <Route path="/gestor/reservas/editar/:id" element={<Envirouments_Edit/>}/>
+                <Route path="/gestor/reservas/register/" element={<Envirouments_Register/>}/>
             </Route>
         </Routes>
     );

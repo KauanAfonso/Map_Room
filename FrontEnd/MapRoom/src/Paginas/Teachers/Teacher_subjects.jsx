@@ -3,12 +3,17 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { CardSubjects } from "../../components/CardSubjects";
 import { ToggleSwitch } from "../../components/ToggleSwitch";
 import styles from "./Teacher_subjects.module.css";
+import { useNavigate } from "react-router-dom";
 
 export function Teacher_subjects() {
   const [disciplinas, setDisciplinas] = useState([]);
   const [filtrarEn, setFiltrarEn] = useState('api/disciplinas/');
 
   const token = localStorage.getItem('acess_token');
+    const navigate = useNavigate();
+    if(!token){
+        navigate('/')
+    }
 
   // Função que busca as disciplinas com base no endpoint atual
   const fetchDisciplinas = useCallback(() => {
