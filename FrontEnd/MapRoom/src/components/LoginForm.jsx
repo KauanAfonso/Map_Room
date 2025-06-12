@@ -6,10 +6,11 @@ import axios from "axios";
 import { useForm } from "react-hook-form";
 import { z } from 'zod';
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useNavigate } from "react-router-dom";
 
 
 export function LoginForm() {
-
+    const navigate = useNavigate();
     const schemaLogin = z.object({
         username: z.string()
             .min(1, "informe seu usuário")
@@ -46,6 +47,7 @@ export function LoginForm() {
             localStorage.setItem('username', user.username)
 
             console.log("Login efetuado com sucesso !")
+            navigate("/home")
 
         } catch (err) {
             console.error("Deu ruim: ", err)

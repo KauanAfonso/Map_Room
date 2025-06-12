@@ -9,8 +9,8 @@ const username = localStorage.getItem("username");
     const tipo = localStorage.getItem("tipo");
 
     // Define rotas com base no tipo do usuário
-    const link_disciplinas = tipo === 'P' ? '/a' : '/gestor/disciplinas';
-    const link_ambientes = tipo === 'P' ? '/a' : '/gestor/reservas';
+    const link_disciplinas = tipo === 'P' ? '/disciplinas' : '/gestor/disciplinas';
+    const link_ambientes = tipo === 'P' ? '/reservas' : '/gestor/reservas';
     const link_usuarios = tipo == 'P' ? '/a' : '/gestor/usuarios';
     const link_salas = tipo === 'P' ? '/salas' : '/gestor/salas';
  

@@ -6,6 +6,7 @@ import { Layout } from "../Paginas/Layout";
 
 import { Teacher_subjects } from "../Paginas/Teachers/Teacher_subjects";
 import { Teacher_Envirouments } from "../Paginas/Teachers/Teacher_Envirouments";
+import { Teacher_Classroom } from "../Paginas/Teachers/Teacher_Classroom";
 
 import { User_Edit } from "../Paginas/manager/User_Edit";
 import { User_Register } from "../Paginas/manager/User_Register";
@@ -29,6 +30,7 @@ export function RoutesComp() {
                 <Route path="/home" element={<Home />} />
                 <Route path='/disciplinas' element={<Teacher_subjects/>} />
                 <Route path='/Reservas' element={<Teacher_Envirouments/>} />
+                <Route path="/salas" element={<Teacher_Classroom/>} />
 
                 <Route path='/gestor/disciplinas' element={<Subjects_Manager/>}/>
                 <Route path='/gestor/disciplinas/editar/:id' element={<Subject_Edit/>}/>
