@@ -57,7 +57,7 @@ export function Classroom_Register() {
     }
  
     return (
-        <div className='container'>
+        <div className='container' style={{ marginTop: '4rem ', marginBottom: "10rem" }}>
            
             <form onSubmit={handleSubmit(obterDadosFormulario)}>
                     <h2>Criar Sala</h2>

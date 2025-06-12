@@ -1,12 +1,13 @@
 import React from 'react';
 import styles from './Footer.module.css';
+import logo from '../assets/logo.png'; // uso recomendado para importar imagens
 
 export function Footer(){
   return (
     <footer className={styles.footer}>
       <div className={styles.container}>
         <div className={styles.info}>
-          <p className={styles.brand}>Minha Marca</p>
+             <img class='logo' src={logo} alt="aaa" />
           <p className={styles.description}>Seu texto aqui, explicando o que você faz.</p>
         </div>
 

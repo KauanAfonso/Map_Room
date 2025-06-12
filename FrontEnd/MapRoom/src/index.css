@@ -1,12 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&family=Poetsen+One&display=swap');
+
 *{
   margin: 0;
   box-sizing: border-box;
   padding: 0;
+  font-family: "Old Standard", sans-serif;
+  font-weight: 100;
 }
+
+
 
 a {
   text-decoration: none;
   color: inherit;
+}
+
+.logo{
+    width: 4rem !important;
 }
 
 .container {
@@ -104,43 +114,3 @@ tbody td:last-child svg:hover {
   color: #d9534f;
 }
 
-/* Responsividade para telas pequenas */
-@media (max-width: 720px) {
-  main {
-    padding: 0 8px;
-  }
-
-  table, thead, tbody, th, td, tr {
-    display: block;
-  }
-
-  thead tr {
-    display: none;
-  }
-
-  tbody tr {
-    margin-bottom: 16px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 12px;
-  }
-
-  tbody td {
-    padding-left: 50%;
-    position: relative;
-  }
-
-  tbody td::before {
-    content: attr(data-label);
-    position: absolute;
-    left: 16px;
-    font-weight: 600;
-    white-space: nowrap;
-  }
-
-  tbody td:last-child {
-    display: flex;
-    justify-content: flex-start;
-    gap: 16px;
-  }
-}

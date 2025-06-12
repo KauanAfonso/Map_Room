@@ -26,7 +26,6 @@ export function Envirouments_Register() {
     } = useForm({
         resolver: zodResolver(schemasReserva)
     });
-
     
     useEffect(() => {
         async function buscarDados() {
@@ -94,8 +93,8 @@ export function Envirouments_Register() {
     }
  
     return (
-        <div className='container'>
-            <form onSubmit={handleSubmit(obterDadosFormulario)}>
+        <div className='container'style={{ marginTop: '4rem ', marginBottom: "4rem" }} >
+            <form onSubmit={handleSubmit(obterDadosFormulario)}  >
                 <h2>Cadastro de Reserva</h2>
 
                 <label>Data</label>

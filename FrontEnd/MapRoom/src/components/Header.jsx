@@ -1,7 +1,7 @@
 import styles from './Header.module.css'
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom';
-
+import logo from '../assets/logo.png'; // uso recomendado para importar imagens
 export function Header() {
     const navigate = useNavigate();
     const handle_logout = ()=>{
@@ -14,7 +14,7 @@ export function Header() {
         <header>
             <nav className={styles.container}>
                 <ul>
-                    <li><Link to="/home">MapRoom</Link></li>
+                    <li><Link to="/home"><img class='logo' src={logo} alt="aaa" /></Link></li>
                     <li>Meus Agendamentos</li>
                     <li>Agendar Sala</li>
                     <li>Visualizar salas agendadas</li>

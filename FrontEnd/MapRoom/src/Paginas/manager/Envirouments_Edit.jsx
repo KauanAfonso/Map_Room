@@ -78,7 +78,7 @@ export function Envirouments_Edit() {
     }
 
     return (
-        <div className='container'>
+        <div className='container'   style={{ marginTop: '4rem ', marginBottom: "4rem" }}>
             <form onSubmit={handleSubmit(onSubmit)} className={estilos.form}>
                 <h2>Editar Reserva</h2>
 
