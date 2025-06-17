@@ -1,7 +1,12 @@
 
 import styles from "./CardMenu.module.css";
 
-//This component makes an card that acepet as paramters an icon and label
+/*
+Esse componente será responsável
+por ser o card do menu principal
+onde recebe um icone uma legenda
+*/
+
 export function CardMenu({ icon: Icon, label }) {
     return (
         <div className={styles.card}>

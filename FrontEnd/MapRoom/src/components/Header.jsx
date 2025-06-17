@@ -18,7 +18,7 @@ export function Header() {
                     <li>Meus Agendamentos</li>
                     <li>Agendar Sala</li>
                     <li>Visualizar salas agendadas</li>
-                    <li onClick={handle_logout}>Logout</li>
+                    <li style={{cursor:"pointer"}} onClick={handle_logout}>Logout</li>
                 </ul>
             </nav>
         </header>
