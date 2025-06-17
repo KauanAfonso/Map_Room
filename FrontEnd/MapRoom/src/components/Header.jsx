@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom';
 import logo from '../assets/logo.png'; // uso recomendado para importar imagens
 export function Header() {
+    //Fazendo o logout se o usuario clicar em logout
     const navigate = useNavigate();
     const handle_logout = ()=>{
         localStorage.removeItem('acess_token');
