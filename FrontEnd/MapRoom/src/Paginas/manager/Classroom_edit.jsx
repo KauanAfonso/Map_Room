@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import estilos from './Subject_Edit.module.css';
 
- 
+ //schema para enviar os dados do formulário
 const schemaClassroom = z.object({
     nome: z.string()
         .min(1, 'Informe ao menos um caractere')
@@ -17,6 +17,8 @@ const schemaClassroom = z.object({
         .max(100, 'Informe até 100 caracteres'),
 });
  
+//esse componente é responsável por editar uma sala
+// ele recebe o id da sala como parâmetro, busca os dados da sala e preenche o formulário
 export function Classroom_edit() {
     const[sala, setSala] = useState([])
     const { id } = useParams();

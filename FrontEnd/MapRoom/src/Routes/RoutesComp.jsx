@@ -24,6 +24,7 @@ import { Envirouments_Manager } from "../Paginas/manager/Envirouments_Manager";
 import { Envirouments_Edit } from "../Paginas/manager/Envirouments_Edit";
 import { Envirouments_Register } from "../Paginas/manager/Envirouments_Register";
 
+// Esse componente é responsável por definir as rotas da aplicação
 export function RoutesComp() {
     
     return (

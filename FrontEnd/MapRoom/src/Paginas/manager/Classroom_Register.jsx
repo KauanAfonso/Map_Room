@@ -3,7 +3,8 @@ import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
- 
+
+// Schema para validação dos dados do formulário
 const schemasSala = z.object({
     nome: z.string()
         .min(1, 'Informe ao menos um caractere')
@@ -15,6 +16,7 @@ const schemasSala = z.object({
 
 });
  
+// Esse componente é responsável por registrar uma nova sala
 export function Classroom_Register() {
  
     const {

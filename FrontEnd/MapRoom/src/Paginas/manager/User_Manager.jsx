@@ -6,6 +6,8 @@ import styles from "../Teachers/Teacher_Enviroument.module.css";
 import { FiPlus, FiEdit, FiTrash } from 'react-icons/fi';
 import { useNavigate } from "react-router-dom";
 
+// Esse componente é responsável por listar os usuários disponíveis
+// Ele busca os usuários da API e exibe em uma tabela, permitindo editar ou excluir cada usuário
 export function User_Manager() {
   const [usuario, setUsuario] = useState([]);
   const token = localStorage.getItem('acess_token');
@@ -30,6 +32,7 @@ export function User_Manager() {
 
   }, []);
 
+  // Função para lidar com a exclusão de um usuário
   const handleDelete = (id) => {
     const confirmar = window.confirm('Tem certeza que deseja excluir esta reserva?');
     if (!confirmar) return;

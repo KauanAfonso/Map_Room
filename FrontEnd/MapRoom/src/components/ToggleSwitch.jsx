@@ -8,7 +8,8 @@ export function ToggleSwitch({ label, onToggle }) {
     setChecked(!checked);
     if(onToggle) onToggle(!checked);
   }
-
+  // Função para lidar com a mudança do estado do switch
+  // e chamar a função onToggle se fornecida
   return (
     <label className="switch">
       <input type="checkbox" checked={checked} onChange={handleChange} />

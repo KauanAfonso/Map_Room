@@ -8,7 +8,11 @@ import { z } from 'zod';
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useNavigate } from "react-router-dom";
 
-
+/*
+Esse componente é referente ao formulário de login
+ele recebe o username e a senha do usuário e retorna possiveis erros,
+faz login e redireciona o usuário para a página home
+*/
 export function LoginForm() {
     const navigate = useNavigate();
     const schemaLogin = z.object({

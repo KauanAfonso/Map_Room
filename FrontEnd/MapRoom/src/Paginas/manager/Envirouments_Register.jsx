@@ -5,7 +5,7 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
- 
+// Schema para validação dos dados do formulário de reserva 
 const schemasReserva = z.object({
     data: z.string().min(1, 'Data é obrigatória'),
     periodo: z.enum(['M', 'T', 'N'], {
@@ -14,6 +14,7 @@ const schemasReserva = z.object({
     sala_reservada: z.number({ invalid_type_error: "Sala é obrigatória" }),
     professor: z.number({ invalid_type_error: "Professor é obrigatório" }),
 });
+// Esse componente é responsável por registrar uma nova reserva de ambiente
 export function Envirouments_Register() {
     const [salas, setSalas] = useState([]);
     const navigate = useNavigate();

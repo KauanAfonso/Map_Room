@@ -6,6 +6,8 @@ import styles from "../Teachers/Teacher_Enviroument.module.css";
 // Importação dos ícones do React Icons
 import { FiPlus, FiEdit, FiTrash } from 'react-icons/fi';
 
+// Esse componente é responsável por listar as reservas de ambientes
+// Ele busca as reservas da API e exibe em uma tabela, permitindo editar ou excluir cada reserva
 export function Envirouments_Manager() {
   const [reservas, setReservas] = useState([]);
   const token = localStorage.getItem('acess_token');
@@ -30,6 +32,7 @@ export function Envirouments_Manager() {
 
   }, []);
 
+  // Função para lidar com a exclusão de uma reserva
   const handleDelete = (id) => {
     const confirmar = window.confirm('Tem certeza que deseja excluir esta reserva?');
     if (!confirmar) return;

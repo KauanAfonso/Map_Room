@@ -5,6 +5,8 @@ import { ToggleSwitch } from "../../components/ToggleSwitch";
 import styles from "./Teacher_subjects.module.css";
 import { useNavigate } from "react-router-dom";
 
+// Esse componente é responsável por listar as disciplinas disponíveis
+// Ele busca as disciplinas da API e exibe em cartões, permitindo ao professor ver suas disciplinas
 export function Teacher_subjects() {
   const [disciplinas, setDisciplinas] = useState([]);
   const [filtrarEn, setFiltrarEn] = useState('api/disciplinas/');

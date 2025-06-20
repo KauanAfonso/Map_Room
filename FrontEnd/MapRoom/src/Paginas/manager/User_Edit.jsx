@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import estilos from './Subject_Edit.module.css';
 
- 
+ // Schema para validação dos dados do formulário de usuário
 const schemasUser = z.object({
     username: z.string()
         .min(1, 'Informe ao menos um caractere')
@@ -31,7 +31,8 @@ const schemasUser = z.object({
                             }).min(1, 'Selecione um tipo')
 
 });
- 
+
+// Esse componente é responsável por editar um usuário existente
 export function User_Edit(){
     const[usuario, setusuario] = useState([])
     const { id } = useParams();

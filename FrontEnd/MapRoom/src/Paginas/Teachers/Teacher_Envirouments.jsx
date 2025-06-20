@@ -5,10 +5,10 @@ import styles from "./Teacher_Enviroument.module.css";
 import { ToggleSwitch } from "../../components/ToggleSwitch";
 import { useNavigate } from "react-router-dom";
 
-
+// Esse componente é responsável por listar os agendamentos de ambientes
+// Ele busca os agendamentos da API e exibe em cartões, permitindo ao professor ver suas reservas
 export function Teacher_Envirouments(){
     
-
     const [enviroument, setEnviroument] = useState([]);
     const [api, setApi] = useState('api/reservas/')
     const token = localStorage.getItem('acess_token');
@@ -19,7 +19,8 @@ export function Teacher_Envirouments(){
 
     const [mostrar_acoes, set_acoes] = useState(false);
     
-
+    // Função para lidar com o toggle do switch
+    //muda a API chamada dependendo se o switch está ligado ou desligado
     function handleToggle(isOn) {
         if (isOn) {
           setApi('api/professor/reservas/');

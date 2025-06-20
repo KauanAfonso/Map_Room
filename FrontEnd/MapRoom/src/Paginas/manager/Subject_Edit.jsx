@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import estilos from './Subject_Edit.module.css';
 
- 
+// Schema para validação dos dados do formulário de disciplina 
 const schemaDisciplina = z.object({
     nome: z.string()
         .min(1, 'Informe ao menos um caractere')
@@ -27,6 +27,7 @@ const schemaDisciplina = z.object({
                             }).min(1, 'Selecione um professor')
 });
  
+// Esse componente é responsável por editar uma disciplina existente
 export function Subject_Edit() {
  
     const [professores, setProfessores] = useState([]);
@@ -43,6 +44,8 @@ export function Subject_Edit() {
     });
  
     useEffect(() => {
+        // Função para buscar os professores e preencher o formulário com os dados da disciplina
+        // com o ID fornecido na URL
         async function buscarProfessores() {
             try {
                 const token = localStorage.getItem('acess_token');
@@ -72,6 +75,7 @@ export function Subject_Edit() {
         buscarProfessores();
     }, []);
  
+    // Função para obter os dados do formulário e enviar para a API
     async function obterDadosFormulario(data) {
       console.log("Dados do formulário:", data);
         try {

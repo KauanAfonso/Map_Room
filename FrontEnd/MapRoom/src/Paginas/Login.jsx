@@ -2,10 +2,8 @@ import {    LoginForm   } from "../components/LoginForm";
 import styles from "./Login.module.css"
 import imagemLogin from '../assets/imagem_login.png';
 
-
+// Esse componente é responsável por renderizar a página de login
 export function Login(){
-
-
     return (
         <>
             <div className={styles.content}>

@@ -12,13 +12,14 @@ export function Header() {
         navigate('/');
     }
     return (
+        //Retorna um cabeçalho para navegação do site
         <header>
             <nav className={styles.container}>
                 <ul>
-                    <li><Link to="/home"><img class='logo' src={logo} alt="aaa" /></Link></li>
-                    <li>Meus Agendamentos</li>
+                    <li><Link to="/home"><img class='logo' src={logo} alt="logo" /></Link></li>
+                    {/* <li>Meus Agendamentos</li>
                     <li>Agendar Sala</li>
-                    <li>Visualizar salas agendadas</li>
+                    <li>Visualizar salas agendadas</li> */}
                     <li style={{cursor:"pointer"}} onClick={handle_logout}>Logout</li>
                 </ul>
             </nav>

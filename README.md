@@ -123,6 +123,14 @@ Backend/
 ---
 
 
+## LOGIN PARA FRONT END
+
+## Gestor
+username: Kauan123
+password: @Senai123
 
 
+## Professor
+username: dorival
 
+password: @Senai123

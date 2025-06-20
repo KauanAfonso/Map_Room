@@ -6,6 +6,8 @@ import styles from "../Teachers/Teacher_Enviroument.module.css";
 // Importação dos ícones do React Icons
 import { FiPlus, FiEdit, FiTrash } from 'react-icons/fi';
 
+// Esse componente é responsável por listar as disciplinas disponíveis
+// Ele busca as disciplinas da API e exibe em uma tabela, permitindo editar ou excluir cada disciplina
 export function Subjects_Manager() {
   const [disciplinas, setDisciplinas] = useState([]);
   const token = localStorage.getItem('acess_token');

@@ -3,7 +3,13 @@ import { FaChalkboardTeacher, FaSchool, FaBookOpen, FaUserTie, FaDoorClosed } fr
 import { CardMenu } from "./CardMenu";
 import { Link } from 'react-router-dom'
 
+/*
 
+Esse componente é referente ao menu principal do sistema
+ele exibe as opções de navegação disponíveis e redireciona o usuário
+para as páginas correspondentes com base no tipo de usuário.
+
+*/
 export function Menu() {
 const username = localStorage.getItem("username");
     const tipo = localStorage.getItem("tipo");

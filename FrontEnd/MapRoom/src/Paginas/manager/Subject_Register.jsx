@@ -5,7 +5,7 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
- 
+// Schema para validação dos dados do formulário de disciplina 
 const schemaDisciplina = z.object({
     nome: z.string()
         .min(1, 'Informe ao menos um caractere')
@@ -26,6 +26,7 @@ const schemaDisciplina = z.object({
                             }).min(1, 'Selecione um professor')
 });
  
+// Esse componente é responsável por registrar uma nova disciplina
 export function Subject_Register() {
  
     const navigate = useNavigate();

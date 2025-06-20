@@ -6,8 +6,6 @@ export function Layout() {
 
     // const location = useLocation()
     // const login_page = location.pathname != "/login" //precisa ser verdadeiro , ou seja não ser a pagina de login
-
-
     return (
         <>
         <Header/>

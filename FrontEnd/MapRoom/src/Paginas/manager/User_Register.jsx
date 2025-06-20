@@ -5,6 +5,7 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
  
+// Schema para validação dos dados do formulário de usuário
 const schemasSala = z.object({
     username: z.string()
         .min(1, 'Informe ao menos um caractere')
@@ -29,7 +30,7 @@ const schemasSala = z.object({
                             }).min(1, 'Selecione um tipo')
 
 });
- 
+// Esse componente é responsável por registrar um novo usuário
 export function User_Register() {
  
     const {
@@ -47,7 +48,7 @@ export function User_Register() {
      }
  
 
- 
+     // Função para obter os dados do formulário e enviar para a API
     async function obterDadosFormulario(data) {
       console.log("Dados do formulário:", data);
         try {
