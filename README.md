@@ -135,6 +135,12 @@ username: dorival
 
 password: @Senai123
 
+
+### administrador
 ![Tela](img3.png)
 ![Tela](img2.png)
 ![Tela](img.png)
+
+
+### Professor
+![Tela](professor1.png)
